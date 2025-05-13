@@ -1,0 +1,25 @@
+.review_section_heading {
+  width: 70%;
+  margin: 112px auto 90px auto;
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+}
+
+.review_section_heading_upper_text {
+  font-size: 60px;
+  color:#FFD600;
+  margin:0;
+}
+
+.review_section_heading_upper_text img {
+  transform:translateY(-26px);
+}
+
+.review_section_heading_lower_text {
+  font-size: 60px;
+  color:#FFFFFF;
+  margin:0px 0px 9px 0px;
+}
