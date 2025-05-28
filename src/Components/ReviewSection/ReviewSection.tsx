@@ -50,20 +50,7 @@ export const ReviewSection = ({
 	const block2 = useRef(null)
 	const block3 = useRef(null)
 	const block4 = useRef(null)
-	const block5 = useRef(null)
-	const block6 = useRef(null)
-	const block7 = useRef(null)
-	const block8 = useRef(null)
-	const observedElements = [
-		block1,
-		block2,
-		block3,
-		block4,
-		block5,
-		block6,
-		block7,
-		block8,
-	]
+	const observedElements = [block1, block2, block3, block4]
 
 	useIntersectionObserver(observedElements, {
 		root: null,
@@ -71,13 +58,10 @@ export const ReviewSection = ({
 		threshold: 0.5,
 	})
 	const [modalOpen, setModalOpen] = useState<boolean>(false)
-	const [modalHaveOpened, setModalHaveOpened] = useState<boolean>(false)
 	const [currentIndex, setCurrentIndex] = useState<number>()
 	const sliderWrapperRef = useRef<HTMLDivElement>(null)
 
 	const { width } = useWindowSize()
-	const isMobile = width < 500
-	const isPad = width > 600 && width < 1024
 
 	const swiperRef = useRef<SwiperType | null>(null)
 
@@ -108,7 +92,6 @@ export const ReviewSection = ({
 			document.dispatchEvent(event)
 		}
 		setModalOpen(true)
-		setModalHaveOpened(true)
 		setCurrentIndex(index)
 		activeSliderId = id
 	}
@@ -176,7 +159,6 @@ export const ReviewSection = ({
 								src={image}
 								onClick={() => {
 									handleOpenSlider(index)
-									setModalHaveOpened(true)
 								}}
 								alt={`Review ${index + 1}`}
 							/>

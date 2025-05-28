@@ -113,7 +113,6 @@
 
 .review_section_text {
 	width: 100%;
-	opacity: 0;
 	margin: 0;
 }
 
@@ -464,6 +463,7 @@
 		row-gap: 10px;
 		column-gap: 10px;
 		max-width: 100%;
+		min-height: 800px;
 	}
 	.review_section_cards img {
 		width: 100%;
@@ -472,6 +472,7 @@
 		object-fit: cover;
 		border-radius: 10px;
 		cursor: pointer;
+		min-height: 180px;
 	}
 	.review_section_text {
 		margin: 0;
@@ -691,6 +692,12 @@
 	.review_section_text {
 		width: 100%;
 	}
+	.review_section_cards {
+		min-height: 650px;
+	}
+	.review_section_cards img {
+		min-height: 150px;
+	}
 }
 @media (min-width: 401px) and (max-width: 410px) {
 	.review_section {
@@ -699,6 +706,12 @@
 	}
 	.review_section_text {
 		width: 100%;
+	}
+	.review_section_cards {
+		min-height: 660px;
+	}
+	.review_section_cards img {
+		min-height: 155px;
 	}
 }
 @media (min-width: 411px) and (max-width: 420px) {
@@ -709,7 +722,14 @@
 	.review_section_text {
 		width: 100%;
 	}
+	.review_section_cards {
+		min-height: 670px;
+	}
+	.review_section_cards img {
+		min-height: 155px;
+	}
 }
+
 @media (min-width: 421px) and (max-width: 450px) {
 	.review_section {
 		width: 77%;
@@ -723,9 +743,11 @@
 		grid-template-rows: repeat(4, 1fr);
 		gap: 12px;
 		max-width: 400px;
+		min-height: 700px;
 	}
 	.review_section_cards img {
 		border-radius: 10px;
+		min-height: 160px;
 	}
 }
 
@@ -755,6 +777,11 @@
 		grid-template-rows: repeat(4, 1fr);
 		gap: 12px;
 		max-width: 100%;
+		min-height: 750px;
+	}
+
+	.review_section_cards img {
+		min-height: 170px;
 	}
 
 	.review_section_text {
