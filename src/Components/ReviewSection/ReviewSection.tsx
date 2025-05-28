@@ -77,6 +77,7 @@ export const ReviewSection = ({
 
 	const { width } = useWindowSize()
 	const isMobile = width < 500
+	const isPad = width > 600 && width < 1024
 
 	const swiperRef = useRef<SwiperType | null>(null)
 
@@ -158,17 +159,14 @@ export const ReviewSection = ({
 						{whiteTitle}
 						{isMoscow && (
 							<div className={classes.is_moscow_block}>
-								<Arrow />
+								<div className={classes.arrow_wrapper}>
+									<Arrow />
+								</div>
 								<div className={classes.is_moscow_block_yellow_part}>
 									г. Москва
 								</div>
 							</div>
 						)}
-						{isMoscow && isMobile ? (
-							<div className={classes.is_moscow_block_yellow_mobile}>
-								г. Москва
-							</div>
-						) : null}
 					</p>
 				</div>
 				<div className={classes.review_section_cards} ref={block3}>
@@ -199,11 +197,7 @@ export const ReviewSection = ({
 								}}
 							>
 								{images.map((image, index) => (
-									<SwiperSlide
-										key={index}
-										className={classes.slider_slide}
-										onClick={e => e.stopPropagation()}
-									>
+									<SwiperSlide key={index} className={classes.slider_slide}>
 										<img
 											src={image}
 											alt={`Slide ${index + 1}`}

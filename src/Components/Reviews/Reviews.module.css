@@ -66,3 +66,9 @@
 		margin: 38px auto 60px auto;
 	}
 }
+
+@media (width > 630px) and (width < 690px) {
+	.review_section_heading_upper_text {
+		white-space: nowrap;
+	}
+}

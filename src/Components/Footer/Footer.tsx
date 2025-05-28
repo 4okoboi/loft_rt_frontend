@@ -1,6 +1,6 @@
 import React, { useRef } from "react"
 import classes from "./Footer.module.css"
-import {NavLink} from "react-router-dom"
+import {NavLink, useLocation} from "react-router-dom"
 import {UserType} from "../../utils/generalTypes"
 import logo from "../../assets/images/Group 4606.png"
 
@@ -56,9 +56,13 @@ const Footer: React.FC<FooterProps> = (props) => {
         threshold: 0.5,
     });
 
+    const location = useLocation()
+
+    const isReviewPage = location.pathname === '/reviews'
+
     return (            
         <footer className={classes.footer}>
-            <div className={classes.topFooter}>
+            {isReviewPage ? null : (<div className={classes.topFooter}>
                 <div className={classes.title1} ref={block1}>
                     А вот наши контакты
                 </div>
@@ -103,7 +107,7 @@ const Footer: React.FC<FooterProps> = (props) => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>)}
             <div className={classes.deepFooter}>
                 <div className={classes.container}>
                     <div className={classes.logoContainer}>
