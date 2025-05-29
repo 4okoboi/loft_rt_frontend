@@ -18,11 +18,16 @@ import {
 import { Line } from './Line'
 import classes from './Reviews.module.css'
 import { ContactSection } from '../ContactSection/ContactSection'
+import { useWindowSize } from '../ReviewSection/useWindowSize'
+import { MobileLine } from './MobileLine'
 
 export const Reviews = () => {
 	const block1 = useRef(null)
 	const observedElements = [block1]
 
+	const { width } = useWindowSize()
+	const isMobile = width < 500
+	
 	useIntersectionObserver(observedElements, {
 		root: null,
 		rootMargin: '0px',
@@ -32,13 +37,13 @@ export const Reviews = () => {
 		<div className={classes.reviews_container}>
 			<div className={classes.review_section_heading} ref={block1}>
 				<p className={classes.review_section_heading_upper_text}>
-					живые отзывы
+					ЖИВЫЕ ОТЗЫВЫ
 					<img src={checkmark} alt='' />
 				</p>
 				<p className={classes.review_section_heading_lower_text}>
-					заказчиков о работе с нами
+					ЗАКАЗЧИКОВ О РАБОТЕ{isMobile && <br></br>} С НАМИ
 				</p>
-				<Line />
+				{isMobile ? <MobileLine /> : <Line />}
 			</div>
 			<ReviewSection
 				id='1'

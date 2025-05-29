@@ -4,30 +4,38 @@
 	color: #fff;
 	margin: 0 auto;
 	max-width: 1200px;
+	padding: 0 15px 0 15px;
 }
 .heading {
 	font-size: 55px;
-	text-align: center;
 	margin-bottom: 50px;
+	opacity: 0;
 }
 .content {
 	display: flex;
-	justify-content: center;
-	gap: 32px;
+	gap: 25px;
 	flex-wrap: wrap;
+	margin: 0;
+	padding: 0;
 }
 .left {
-	/* margin-left: 15px; */
 	flex: 1 1 320px;
 	max-width: 683px;
+	border-radius: 15px;
+	opacity: 0;
 }
 .right {
 	flex: 1 1 320px;
 	max-width: 420px;
+	border-radius: 15px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	opacity: 0;
 }
 .card {
 	background: #222;
-	border-radius: 16px;
+	border-radius: 15px;
 	padding: 24px;
 	margin-bottom: 24px;
 	box-sizing: border-box;
@@ -37,7 +45,7 @@
 	font-family: inherit;
 	color: #222;
 	border: none;
-	border-radius: 8px;
+	border-radius: 15px;
 	padding: 12px 24px;
 	margin-right: 12px;
 	font-size: 21px;
@@ -46,7 +54,7 @@
 	height: 59px;
 }
 .whiteBtn {
-	background: #fff;
+	background: #ffffff;
 	color: #222;
 	border: none;
 	border-radius: 15px;
@@ -68,6 +76,7 @@
 	cursor: pointer;
 	font-weight: bold;
 	height: 34px;
+	width: 39%;
 	max-width: 149px;
 	display: flex;
 	justify-content: center;
@@ -83,28 +92,63 @@
 	cursor: pointer;
 	font-weight: bold;
 	height: 34px;
+	width: 39%;
 	max-width: 149px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
+
+.buttons_wrapper {
+	display: flex;
+	justify-content: space-between;
+	width: 60%;
+	align-items: center;
+}
+
+.buttons {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.portfolio_btn_signature {
+	color: #adadad;
+	font-size: 11.3px;
+}
+
+.socials_wrapper {
+	background-color: #ffffff;
+	max-height: 108px;
+	border-radius: 15px;
+	padding: 24px;
+	margin-bottom: 24px;
+	box-sizing: border-box;
+	opacity: 0;
+}
+.socials_wrapper h4 {
+	color: #000000;
+	font-size: 19px;
+	margin: 0px 0px 15px 0px !important;
+}
 .socials {
 	display: flex;
 	gap: 12px;
-	margin-top: 10px;
+	justify-content: center;
 }
 .socialBtn {
-	background: #3b5998;
+	background: #0077ff;
 	color: #fff;
 	border: none;
 	border-radius: 8px;
-	padding: 10px 18px;
 	font-size: 15px;
 	cursor: pointer;
 	font-weight: bold;
+	width: 40%;
+	min-height: 34px;
 }
 .socialBtn:last-child {
-	background: #229ed9;
+	background: #039be5;
 }
 @media (max-width: 700px) {
 	.content {
@@ -143,5 +187,233 @@
 	justify-content: center;
 }
 
-.platformBtn {
+@media (max-width: 1200px) {
+	.contactSection {
+		width: 90%;
+	}
+
+	.heading {
+		font-size: 45px;
+	}
+
+	.card h3 {
+		font-size: 30px;
+	}
+
+	.subtext,
+	.description {
+		font-size: 20px;
+	}
+}
+
+@media (max-width: 1100px) {
+	.contactSection {
+		width: 95%;
+	}
+
+	.content {
+		gap: 20px;
+	}
+	.heading {
+		font-size: 40px;
+		margin-bottom: 30px;
+	}
+
+	.buttons_wrapper {
+		width: 100%;
+	}
+
+	.yellowBtn {
+		font-size: 18px;
+		padding: 10px 20px;
+		height: 50px;
+	}
+
+	.whiteBtn {
+		height: 50px;
+	}
+}
+
+@media (max-width: 700px) {
+	.content {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.left,
+	.right {
+		max-width: 100%;
+	}
+
+	.heading {
+		font-size: 35px;
+		text-align: center;
+	}
+
+	.card {
+		padding: 20px;
+	}
+
+	.card h3 {
+		font-size: 28px;
+		text-align: center;
+	}
+
+	.subtext,
+	.description {
+		font-size: 18px;
+		text-align: center;
+	}
+
+	.buttons_wrapper {
+		flex-direction: column;
+		align-items: center;
+		gap: 15px;
+	}
+
+	.buttons {
+		width: 100%;
+		justify-content: center;
+	}
+
+	.portfolio_btn_signature {
+		text-align: center;
+	}
+
+	.socials_wrapper {
+		padding: 20px;
+	}
+
+	.socials {
+		flex-wrap: wrap;
+	}
+
+	.socialBtn {
+		width: 45%;
+	}
+}
+
+@media (max-width: 600px) {
+	.contactSection {
+		width: 100%;
+		padding: 0 10px;
+	}
+
+	.heading {
+		font-size: 23px;
+		margin-bottom: 20px;
+		text-align: left;
+		white-space: nowrap;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.card h3 {
+		font-size: 20px;
+		text-align: left;
+	}
+
+	.subtext {
+		text-align: left;
+		opacity: 0.3;
+		font-size: 15px;
+		margin-bottom: 35px;
+	}
+	.description {
+		text-align: left;
+		font-size: 15px;
+		margin-bottom: 15px;
+	}
+
+	.buttons {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	.yellowBtn {
+		font-size: 14.5px;
+		margin: 0px 0px 10px 0px;
+		border-radius: 5px;
+		width: 100%;
+		max-width: 100%;
+		max-height: 38px;
+	}
+
+	.whiteBtn {
+		font-size: 14.5px;
+		width: 100%;
+		max-width: 100%;
+		max-height: 38px;
+		margin-bottom: 10px;
+		border-radius: 5px;
+		font-family: inherit;
+	}
+	.portfolio_btn_signature {
+		display: none;
+	}
+
+	.right {
+		width: 100%;
+	}
+	.right h4 {
+		font-size: 15px;
+		display: block;
+		white-space: nowrap;
+		color: #000000;
+	}
+
+	.right div {
+		background-color: #ffd600;
+	}
+
+	.platformBtn,
+	.platformBtn_ozon {
+		width: 45%;
+		font-size: 13px;
+		padding: 8px 12px;
+	}
+
+	.socials_wrapper h4 {
+		font-size: 16px;
+	}
+
+	.socialBtn {
+		width: 48%;
+		font-size: 13px;
+	}
+
+	.platforms {
+		display: flex;
+		width: 91.5%;
+		justify-content: space-between;
+	}
+	.platforms button {
+		width: 49%;
+	}
+
+	.link_wrapper {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.socials_wrapper {
+		background-color: #fff !important;
+	}
+	.socials {
+		background-color: #fff !important;
+	}
+}
+@media (width >=500px) and (width <=700px) {
+	.contactSection {
+		width: 68%;
+		padding: 0 10px;
+		box-sizing: border-box;
+		width: 85%;
+		margin: 0 auto 100px auto;
+	}
 }

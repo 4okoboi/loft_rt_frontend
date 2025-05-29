@@ -50,7 +50,17 @@ export const ReviewSection = ({
 	const block2 = useRef(null)
 	const block3 = useRef(null)
 	const block4 = useRef(null)
-	const observedElements = [block1, block2, block3, block4]
+	const block5 = useRef(null)
+	const block6 = useRef(null)
+	const block7 = useRef(null)
+	const block8 = useRef(null)
+	const block9 = useRef(null)
+	const block10 = useRef(null)
+	const block11 = useRef(null)
+	const block12 = useRef(null)
+	const block13 = useRef(null)
+	const block14 = useRef(null)
+	const observedElements = [block1, block2, block3, block4, block5, block6, block7, block8, block9, block10, block11, block12, block13, block14]
 
 	useIntersectionObserver(observedElements, {
 		root: null,
@@ -152,9 +162,9 @@ export const ReviewSection = ({
 						)}
 					</p>
 				</div>
-				<div className={classes.review_section_cards} ref={block3}>
+				<div className={classes.review_section_cards}>
 					{images.map((image, index) => (
-						<div key={index}>
+						<div key={index} ref={observedElements[index + 2]}>
 							<img
 								src={image}
 								onClick={() => {
@@ -212,21 +222,21 @@ export const ReviewSection = ({
 					</div>
 				)}
 			</div>
-			<div className={classes.review_section_text} ref={block4}>
+			<div className={classes.review_section_text} >
 				<p className={classes.review_section_text_heading}>История проекта</p>
-				<div className={classes.review_section_text_first_wrapper}>
-					<div className={classes.review_section_text_first}>
+				<div className={classes.review_section_text_first_wrapper} >
+					<div className={classes.review_section_text_first} ref={block11}>
 						<p className={classes.review_section_text_number}>1</p>
 						<p className={classes.review_section_text_description}>
 							{firstTextSection}
 						</p>
 					</div>
-					<div className={classes.image_block}>
+					<div className={classes.image_block} ref={block12}>
 						<img src={extraImage} alt='' />
 					</div>
 				</div>
 
-				<div className={classes.review_section_text_second_and_third}>
+				<div className={classes.review_section_text_second_and_third} ref={block13}>
 					<p className={classes.review_section_text_number}>2</p>
 					<p className={classes.review_section_text_description}>
 						{secondTextSection}
@@ -239,7 +249,7 @@ export const ReviewSection = ({
 						)}
 					</p>
 				</div>
-				<div className={classes.review_section_text_second_and_third}>
+				<div className={classes.review_section_text_second_and_third} ref={block14}>
 					<p className={classes.review_section_text_number}>3</p>
 					<p className={classes.review_section_text_description}>
 						{thirdTextSection}
