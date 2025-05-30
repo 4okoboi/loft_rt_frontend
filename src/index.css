@@ -17,3 +17,7 @@
   font-family:"NAMU-1850";
   src: url("./assets/fonts/namu/NAMU-typefaces2019/Desktop/TTF/NAMU-1850.ttf");
 }
+@font-face {
+  font-family:"NAMU-1850-otf";
+  src: url("./assets/fonts/namu/NAMU-typefaces2019/Desktop/OTF/NAMU-1850.otf");
+}

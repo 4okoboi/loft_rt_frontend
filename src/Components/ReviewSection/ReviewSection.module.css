@@ -1,5 +1,4 @@
 * {
-	/* outline: 1px solid red; */
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
@@ -26,7 +25,7 @@
 	color: #ffd600;
 	font-size: 55px;
 	margin: 0;
-
+	font-family: 'NAMU-1850-otf';
 	display: flex;
 	width: 100%;
 }
@@ -49,6 +48,7 @@
 	font-size: 55px;
 	margin: 0px auto 50px 0px;
 	display: flex;
+	font-family: 'NAMU-1850-otf';
 }
 
 .is_moscow_block {
@@ -123,6 +123,7 @@
 	font-size: 35px;
 	color: #ffd600;
 	margin-bottom: 30px;
+	font-family: 'NAMU-1850-otf';
 }
 
 .review_section_text_first_wrapper {
