@@ -75,6 +75,11 @@ const Navigation = () => {
                             О нас
                     </NavLink>
                 </div>
+                <div className={classes.home}>
+                    <NavLink to="/reviews" className={({ isActive }) => isActive ? classes.active : classes.disabled}>
+                            Отзывы
+                    </NavLink>
+                </div>
             </div>
         </div>
     )

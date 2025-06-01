@@ -1,0 +1,144 @@
+.header {
+  /* position: fixed; */
+  display: block;
+  align-items: center;
+  font-family: NAMU-1990;
+}
+
+.menuButton {
+  display: flex;
+  margin-left: auto;
+  width: 116px;
+  height: 19px;
+  padding: 0;
+  border: 0;
+  font-size: 16px;
+  line-height: 19.2px;
+  color: #ffffffcf;
+  font-family: NAMU-1990;
+  background-color: transparent;
+}
+  
+.menuButton img {
+  display: block;
+  width: 13px;
+  height: 8px;
+  margin-top: 8px;
+  margin-left: 1px;
+  background-color: transparent;
+}
+
+.menuTitle{
+  display: flex;
+  margin-left: auto;
+  padding: 0;
+  border: 0;
+  font-size: 16px;
+  line-height: 19.2px;
+  color: #ffffffcf;
+  font-family: NAMU-1990;
+  background-color: transparent;
+  margin-left: 7px;
+}
+
+.menuTitle:hover{
+  color: #FFD600;
+}
+
+.menuTitle img {
+  display: block;
+  width: 13px;
+  height: 8px;
+  margin-top: 8px;
+  margin-left: 1px;
+  background-color: #1f1d16d1;
+}
+  
+.menu {
+  position: absolute;
+  /* top: calc(100% + 5px); */
+  /* right: 10px; */
+  width: 289px;
+  height: 122px;
+  /* padding: 25px; */
+  background-color: hsla(47,17%,10.4%,0.82);
+  border: 1px solid yellow;
+  border-radius: 12px;
+  opacity: 0;
+  /* transform: translateY(-10px); */
+  visibility: hidden;
+  transition: 0.3s;
+  margin-top: -30px;
+  margin-left: -18px;
+  font-family: NAMU-1990;
+  z-index: 5;
+}
+  
+.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .menu::before,
+  .menu::after {
+    display: block;
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 15px;
+    border: 10px solid transparent;
+  }
+  
+  .menu::before {
+    top: -20px;
+    /* border-bottom: 10px solid #dd8717; */
+  }
+  
+  .menu::after {
+    top: -19px;
+    /* border-bottom: 10px solid; */
+  }
+  
+  .menuList {
+    margin: 0;
+    width: 100%;
+    padding: 10px;
+    list-style-type: none;
+  }
+  
+  .menuItem {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    line-height: 19.2px;
+    font-weight: 500;
+    color: #747474;
+    cursor: pointer;
+    margin-left: 7px;
+  }
+  
+  .menuItem:nth-child(n + 2) {
+    margin-top: 7px;
+  }
+  
+  .icon {
+    margin-right: 15px;
+    font-size: 24px;
+    color: inherit;
+  }
+
+.navActive{
+  text-decoration: none;
+  color: #FFD600;
+}
+  
+.navDisabled{
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+.navDisabled:hover{
+  color: #FFD600;
+}

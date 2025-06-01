@@ -6,6 +6,7 @@ import phoneImg from "../../assets/images/Vector.svg"
 import BisnesMenu from "../BisnesMenu/BisnesMenu"
 import ServiceMenu from "../ServiceMenu/ServiceMenu"
 import numbNavImg from "../../assets/images/NumbNavImg.svg"
+import { AboutUsMenu } from "../AboutUsMenu/AboutUsMenu";
 
 const Header = () => {
     return (
@@ -41,16 +42,8 @@ const Header = () => {
                             Для дома
                         </NavLink>
                     </div>
-                    <div className={classes.home}>
-                        <NavLink to="/about_us" className={navData => navData.isActive ? classes.active : classes.disabled}>
-                                О нас
-                        </NavLink>
-                    </div>
-                    <div className={classes.home}>
-                        <NavLink to="/how_it_will_be"
-                            className={navData => navData.isActive ? classes.active : classes.disabled}>
-                                Как всё будет
-                        </NavLink>
+                    <div className={classes.aboutUsMenu}>
+                        <AboutUsMenu />
                     </div>
                 </div>
                 <div className={classes.phoneBlock}>

@@ -80,6 +80,14 @@
   color: #ffffffcf;
 }
 
+.aboutUsMenu {
+  display: block;
+  font-size: 16px;
+  line-height: 19.2px;
+  width: 71px;
+  color: #ffffffcf;
+}
+
 .home img{
   height: 8px;
 }
