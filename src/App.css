@@ -13,6 +13,24 @@
   background-color: black;
 }
 
+.review_grid {
+  margin: 0 auto;
+  display: grid;
+  /* width: 1680px; */
+  grid-template-areas:
+  "h h"
+  "c c"
+  "f f";
+  grid-template-rows: 74.03px 1fr 304px;
+  grid-template-columns: 1fr 1fr;
+  font-family: "NAMU";
+  /* font-family: "NAMU" , sans-serif; */
+  background-color: black;
+}
+
+
+
+
 .add-wrapper-content {
   grid-area: c;
 }
@@ -35,6 +53,19 @@
     grid-template-columns: 1fr 1fr;
     font-family: "NAMU";
     /* font-family: "NAMU" , sans-serif; */
+    background-color: black;
+  }
+
+  .review_grid {
+    margin: 0 auto;
+    display: grid;
+    grid-template-areas:
+    "h h"
+    "c c"
+    "f f";
+    grid-template-rows: 82px 1fr 412px;
+    grid-template-columns: 1fr 1fr;
+    font-family: "NAMU";
     background-color: black;
   }
   

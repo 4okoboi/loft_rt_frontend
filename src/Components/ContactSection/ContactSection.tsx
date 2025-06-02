@@ -82,34 +82,22 @@ export const ContactSection = () => {
                 </div>
               </div>
             ) : (<><div className={styles.link_wrapper}>
-             <button className={styles.platformBtn}>
-              <img src={avito} alt="" />
-             </button>
+             <button className={styles.platformBtn_avito}></button>
             </div>
             <div className={styles.link_wrapper}>
-              <button className={styles.platformBtn}>
-                <img src={yandex} alt="" />
-              </button>
-              <button className={styles.platformBtn}>
-                <img src={twoGIS} alt="" />
-              </button>
+              <button className={styles.platformBtn_yandex}></button>
+              <button className={styles.platformBtn_twoGIS}></button>
             </div>
             <div className={styles.link_wrapper}>
-              <button className={styles.platformBtn_ozon}>
-                <img src={ozon} alt="" />
-              </button>
+              <button className={styles.platformBtn_ozon}></button>
             </div></>)}
           </div>
         </div>
         <div className={styles.socials_wrapper} ref={block4}>
           <h4>Подпишитесь на наши соцсети</h4>
           <div className={styles.socials}>
-            <button className={styles.socialBtn}>
-              <img src={vk} alt="" />
-            </button>
-            <button className={styles.socialBtn}>
-              <img src={telegram} alt="" />
-            </button>
+            <button className={styles.socialBtn}></button>
+            <button className={styles.socialBtn}></button>
           </div>
         </div>
       </div>
