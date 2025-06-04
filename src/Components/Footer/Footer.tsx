@@ -18,6 +18,7 @@ import BisnesMenu from "../BisnesMenu/BisnesMenu"
 import ServiceMenu from "../ServiceMenu/ServiceMenu"
 import deloLogo from "../../assets/images/deloLogo.svg"
 import useIntersectionObserver from "../../hooks/useIntersectionObserver"
+import { AboutUsMenu } from "../AboutUsMenu/AboutUsMenu"
 
 type FooterProps = {
     isAuth: boolean
@@ -61,27 +62,27 @@ const Footer: React.FC<FooterProps> = (props) => {
     const isReviewPage = location.pathname === '/reviews'
 
     return (            
-        <footer className={classes.footer}>
+        <footer className={isReviewPage ? classes.review_footer : classes.footer}>
             {isReviewPage ? null : (<div className={classes.topFooter}>
-                <div className={classes.title1} ref={block1}>
+                <div className={classes.title1}>
                     А вот наши контакты
                 </div>
                 <div className={classes.seventhContainer}>
                     <div className={classes.firstDiv}>
-                        <div className={classes.topBlock} ref={block1}>
+                        <div className={classes.topBlock}>
                             <div className={classes.ph}><img src={phone}/></div>
                             <div className={classes.nu}><a href="tel:+79600535559">+7 (960) 053 55 59</a></div>
                         </div>
-                        <div className={classes.topBlock} ref={block2}>
+                        <div className={classes.topBlock}>
                             <div className={classes.tx}><img src={email}/></div>
                             <div className={classes.lg}><a href="mailto:zakaz@loftrt.ru">zakaz@loftrt.ru</a></div>
                         </div>
-                        <div className={classes.topBlock} ref={block3}>
+                        <div className={classes.topBlock}>
                             <div className={classes.tx}><img src={adress}/></div>
                             <div className={classes.ad1}>Россия, г. Казань,</div>
                             <div className={classes.ad2}>ул. Центральная 91</div>
                         </div>
-                        <div className={classes.bottomBlock} ref={block4}>
+                        <div className={classes.bottomBlock}>
                             <div className={classes.tx}><img src={whatsApp}/></div>
                             <div className={classes.wA}>
                                 <a href="https://wa.me/79600535559">
@@ -89,7 +90,7 @@ const Footer: React.FC<FooterProps> = (props) => {
                                 </a>
                             </div>
                         </div>
-                        <div className={classes.bottomBlock} ref={block5}>
+                        <div className={classes.bottomBlock}>
                             <div className={classes.tx}><img src={telegram}/></div>
                             <div className={classes.te}>
                                 <a href="https://t.me/loftrtru">
@@ -97,7 +98,7 @@ const Footer: React.FC<FooterProps> = (props) => {
                                 </a>
                             </div>
                         </div>
-                        <div className={classes.bottomBlock} ref={block6}>
+                        <div className={classes.bottomBlock}>
                             <div className={classes.tx}><img src={instagram}/></div>
                             <div className={classes.in}>
                                 <a href="https://www.instagram.com/loftrt.ru?igshid=NGVhN2U2NjQ0Yg%3D%3D&utm_source=qr">
@@ -137,17 +138,8 @@ const Footer: React.FC<FooterProps> = (props) => {
                                 Для дома
                             </NavLink>
                         </div>
-                        <div className={classes.home}>
-                            <NavLink to="/about_us"
-                                className={classes.disabled}>
-                                    О нас
-                            </NavLink>
-                        </div>
-                        <div className={classes.home}>
-                            <NavLink to="/how_it_will_be"
-                                className={classes.disabled}>
-                                    Как всё будет
-                            </NavLink>
+                        <div>
+                            <AboutUsMenu />
                         </div>
                     </div>
                     <div className={classes.upButton}>

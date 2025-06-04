@@ -31,6 +31,8 @@ const App = (props) => {
 
     const shouldHideElement = location.pathname === hideElementUrl;
 
+    const isReviewPage = location.pathname === '/reviews'
+
     const ScrollToTop = () => {
         const { pathname } = useLocation();
     
@@ -42,7 +44,7 @@ const App = (props) => {
     }
 
     return (
-        <div className="grid">
+        <div className={isReviewPage ? "review_grid" : "grid"}>
             <Header/>
             <body className="add-wrapper-content">
             <ScrollToTop />
