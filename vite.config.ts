@@ -1,7 +1,7 @@
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
-export default defineConfig({
+export default defineConfig(({ command, mode }) => ({
 	plugins: [
 		react({
 			include: '**/*.{jsx,tsx,js,ts}',
@@ -41,8 +41,13 @@ export default defineConfig({
 	},
 	server: {
 		port: 3000,
-		open: true,
+		open: false, // Отключаем автоматическое открытие браузера для серверов
 		cors: true,
+		host: true, // Разрешаем подключения извне
 	},
 	assetsInclude: ['**/*.webp'],
-})
+	preview: {
+		port: 3000,
+		host: true,
+	},
+}))
