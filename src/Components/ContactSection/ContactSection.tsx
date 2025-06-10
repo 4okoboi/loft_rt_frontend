@@ -69,7 +69,6 @@ export const ContactSection = () => {
                     <img src={avito} alt="" />
                   </button>
                   <button className={styles.platformBtn_twoGIS}>
-                    <img src={twoGIS} alt="" />
                   </button>
                 </div>
                 <div className={styles.platforms}>
