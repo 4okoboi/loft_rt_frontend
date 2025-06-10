@@ -2,7 +2,7 @@ import React, { useRef } from "react"
 import classes from "./Footer.module.css"
 import {NavLink, useLocation} from "react-router-dom"
 import {UserType} from "../../utils/generalTypes"
-import logo from "../../assets/images/Group 4606.png"
+import logo from "../../assets/images-webp/Group 4606.webp"
 
 import phone from "../../assets/images/Телефон_.svg"
 import email from "../../assets/images/Email_.svg"

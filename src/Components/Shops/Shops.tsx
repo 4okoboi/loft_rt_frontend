@@ -1,24 +1,24 @@
 import React, { useRef } from "react";
 import classes from "./Shops.module.css"
-import secBlock1Img from "../../assets/images/shops/secBlock1Img.png"
-import secBlock2Img from "../../assets/images/shops/secBlock2Img.png"
-import alterSecBlock1Img from "../../assets/images/shops/alterSecBlock1Img.png"
-import alterSecBlock2Img from "../../assets/images/shops/alterSecBlock2Img.png"
-import thirdContImg from "../../assets/images/shops/thirdContImg.png"
+import secBlock1Img from "../../assets/images-webp/shops/secBlock1Img.webp"
+import secBlock2Img from "../../assets/images-webp/shops/secBlock2Img.webp"
+import alterSecBlock1Img from "../../assets/images-webp/shops/alterSecBlock1Img.webp"
+import alterSecBlock2Img from "../../assets/images-webp/shops/alterSecBlock2Img.webp"
+import thirdContImg from "../../assets/images-webp/shops/thirdContImg.webp"
 
 import FormAudit from "../FormAudit/FormAudit";
 import SeeBelow from "../SeeBelow/SeeBelow";
 
-import fftb from "../../assets/images/shops/fourthCont1Img.png"
-import seftb from "../../assets/images/shops/fourthCont2Img.png"
-import tftb from "../../assets/images/shops/fourthCont3Img.png"
-import foftb from "../../assets/images/shops/fourthCont4Img.png"
-import fiftb from "../../assets/images/shops/fourthCont5Img.png"
-import siftb from "../../assets/images/shops/fourthCont6Img.png"
+import fftb from "../../assets/images-webp/shops/fourthCont1Img.webp"
+import seftb from "../../assets/images-webp/shops/fourthCont2Img.webp"
+import tftb from "../../assets/images-webp/shops/fourthCont3Img.webp"
+import foftb from "../../assets/images-webp/shops/fourthCont4Img.webp"
+import fiftb from "../../assets/images-webp/shops/fourthCont5Img.webp"
+import siftb from "../../assets/images-webp/shops/fourthCont6Img.webp"
 
-import furnEx1Img from "../../assets/images/shops/furnEx1Img.png"
-import furnEx2Img from "../../assets/images/shops/furnEx2Img.png"
-import furnEx3Img from "../../assets/images/shops/furnEx3Img.png"
+import furnEx1Img from "../../assets/images-webp/shops/furnEx1Img.webp"
+import furnEx2Img from "../../assets/images-webp/shops/furnEx2Img.webp"
+import furnEx3Img from "../../assets/images-webp/shops/furnEx3Img.webp"
 import { NavLink } from "react-router-dom";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 

@@ -1,29 +1,29 @@
 import React, { useRef } from "react";
 import classes from "./Restaurants.module.css"
-import secondContImg from "../../assets/images/restaurants/secondContImg.png"
-import alterSecBlockImg from "../../assets/images/restaurants/alterSecBlockImg.png"
-import thirdContImg from "../../assets/images/restaurants/thirdContImg.png"
+import secondContImg from "../../assets/images-webp/restaurants/secondContImg.webp"
+import alterSecBlockImg from "../../assets/images-webp/restaurants/alterSecBlockImg.webp"
+import thirdContImg from "../../assets/images-webp/restaurants/thirdContImg.webp"
 
 import FormAudit from "../FormAudit/FormAudit";
 import SeeBelow from "../SeeBelow/SeeBelow";
 
-import fftb from "../../assets/images/restaurants/fourthCont1Img.png"
-import seftb from "../../assets/images/restaurants/fourthCont2Img.png"
-import tftb from "../../assets/images/restaurants/fourthCont3Img.png"
-import foftb from "../../assets/images/restaurants/fourthCont4Img.png"
-import fiftb from "../../assets/images/restaurants/fourthCont5Img.png"
-import siftb from "../../assets/images/restaurants/fourthCont6Img.png"
+import fftb from "../../assets/images-webp/restaurants/fourthCont1Img.webp"
+import seftb from "../../assets/images-webp/restaurants/fourthCont2Img.webp"
+import tftb from "../../assets/images-webp/restaurants/fourthCont3Img.webp"
+import foftb from "../../assets/images-webp/restaurants/fourthCont4Img.webp"
+import fiftb from "../../assets/images-webp/restaurants/fourthCont5Img.webp"
+import siftb from "../../assets/images-webp/restaurants/fourthCont6Img.webp"
 
-import seftb2 from "../../assets/images/restaurants/seftb2.png"
-import tftb2 from "../../assets/images/restaurants/tftb2.png"
-import fftb2 from "../../assets/images/restaurants/fftb2.png"
-import fiftb2 from "../../assets/images/restaurants/fiftb2.png"
-import foftb2 from "../../assets/images/restaurants/foftb2.png"
-import siftb2 from "../../assets/images/restaurants/siftb2.png"
+import seftb2 from "../../assets/images-webp/restaurants/seftb2.webp"
+import tftb2 from "../../assets/images-webp/restaurants/tftb2.webp"
+import fftb2 from "../../assets/images-webp/restaurants/fftb2.webp"
+import fiftb2 from "../../assets/images-webp/restaurants/fiftb2.webp"
+import foftb2 from "../../assets/images-webp/restaurants/foftb2.webp"
+import siftb2 from "../../assets/images-webp/restaurants/siftb2.webp"
 
-import furnEx1Img from "../../assets/images/restaurants/furnEx1Img.png"
-import furnEx2Img from "../../assets/images/restaurants/furnEx2Img.png"
-import furnEx3Img from "../../assets/images/restaurants/furnEx3Img.png"
+import furnEx1Img from "../../assets/images-webp/restaurants/furnEx1Img.webp"
+import furnEx2Img from "../../assets/images-webp/restaurants/furnEx2Img.webp"
+import furnEx3Img from "../../assets/images-webp/restaurants/furnEx3Img.webp"
 import { NavLink } from "react-router-dom";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 

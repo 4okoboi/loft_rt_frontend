@@ -3,22 +3,22 @@ import classes from "./Painting.module.css";
 
 import loftLogo from "../../assets/images/sawing/loftLogo.svg"
 
-import secCont1Img from "../../assets/images/painting/secCont1Img.png"
-import secCont2Img from "../../assets/images/painting/secCont2Img.png"
-import secCont3Img from "../../assets/images/painting/secCont3Img.png"
-import alterSecCont3Img from "../../assets/images/painting/alterSecCont3Img.png"
+import secCont1Img from "../../assets/images-webp/painting/secCont1Img.webp"
+import secCont2Img from "../../assets/images-webp/painting/secCont2Img.webp"
+import secCont3Img from "../../assets/images-webp/painting/secCont3Img.webp"
+import alterSecCont3Img from "../../assets/images-webp/painting/alterSecCont3Img.webp"
 
 import logo1Img from "../../assets/images/painting/logo1Img.svg"
 import logo2Img from "../../assets/images/painting/logo2Img.svg"
 import logo3Img from "../../assets/images/painting/logo3Img.svg"
 
-import fifthCont1Img from "../../assets/images/welding/fifthCont1Img.png"
-import fifthCont2Img from "../../assets/images/welding/fifthCont2Img.png"
-import fifthCont3Img from "../../assets/images/painting/fifthCont3Img.png"
-import fifthCont4Img from "../../assets/images/painting/fifthCont4Img.png"
-import fifthCont5Img from "../../assets/images/sawing/fifthCont6Img.png"
-import fifthCont6Img from "../../assets/images/painting/fifthCont6Img.png"
-import fifthCont7Img from "../../assets/images/welding/fifthCont3Img.png"
+import fifthCont1Img from "../../assets/images-webp/welding/fifthCont1Img.webp"
+import fifthCont2Img from "../../assets/images-webp/welding/fifthCont2Img.webp"
+import fifthCont3Img from "../../assets/images-webp/painting/fifthCont3Img.webp"
+import fifthCont4Img from "../../assets/images-webp/painting/fifthCont4Img.webp"
+import fifthCont5Img from "../../assets/images-webp/sawing/fifthCont6Img.webp"
+import fifthCont6Img from "../../assets/images-webp/painting/fifthCont6Img.webp"
+import fifthCont7Img from "../../assets/images-webp/welding/fifthCont3Img.webp"
 
 import FormAudit from "../FormAudit/FormAudit";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";

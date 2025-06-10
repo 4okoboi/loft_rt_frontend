@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect} from "react";
 import classes from "./AboutUsMenu.module.css";
 import {NavLink} from "react-router-dom";
-import dropdownImg from "../../assets/images/DropdownImg.png";
-import dropdownImg2 from "../../assets/images/DropdownImg2.png";
+import dropdownImg from "../../assets/images-webp/DropdownImg.webp";
+import dropdownImg2 from "../../assets/images-webp/DropdownImg2.webp";
 
 
 export const AboutUsMenu = () => {

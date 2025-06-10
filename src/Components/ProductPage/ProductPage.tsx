@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classes from "./ProductPage.module.css";
-import userPhoto from "../../../../assets/images/user.png";
+import userPhoto from "../../../../assets/images-webp/user.webp";
 import {useNavigate} from "react-router-dom";
 import { ProductType } from "../../utils/generalTypes";
 

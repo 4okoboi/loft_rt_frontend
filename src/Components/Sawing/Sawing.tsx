@@ -3,10 +3,10 @@ import classes from "./Sawing.module.css";
 
 import loftLogo from "../../assets/images/sawing/loftLogo.svg"
 
-import secCont1Img from "../../assets/images/sawing/secCont1Img.png"
-import secCont2Img from "../../assets/images/sawing/secCont2Img.png"
-import secCont3Img from "../../assets/images/sawing/secCont3Img.png"
-import alterSecCont3Img from "../../assets/images/sawing/alterSecCont3Img.png"
+import secCont1Img from "../../assets/images-webp/sawing/secCont1Img.webp"
+import secCont2Img from "../../assets/images-webp/sawing/secCont2Img.webp"
+import secCont3Img from "../../assets/images-webp/sawing/secCont3Img.webp"
+import alterSecCont3Img from "../../assets/images-webp/sawing/alterSecCont3Img.webp"
 
 import advantageImg from "../../assets/images/sawing/advantageImg.png"
 
@@ -14,14 +14,14 @@ import logo1Img from "../../assets/images/sawing/logo1Img.svg"
 import logo2Img from "../../assets/images/sawing/logo2Img.svg"
 import logo3Img from "../../assets/images/sawing/logo3Img.svg"
 
-import fifthCont1Img from "../../assets/images/welding/fifthCont1Img.png"
-import fifthCont2Img from "../../assets/images/welding/fifthCont2Img.png"
-import fifthCont3Img from "../../assets/images/welding/fifthCont3Img.png"
-import fifthCont4Img from "../../assets/images/welding/fifthCont4Img.png"
-import fifthCont5Img from "../../assets/images/sawing/fifthCont5Img.png"
-import fifthCont6Img from "../../assets/images/sawing/fifthCont6Img.png"
-import fifthCont7Img from "../../assets/images/welding/fifthCont7Img.png"
-import fifthCont8Img from "../../assets/images/sawing/fifthCont8Img.png"
+import fifthCont1Img from "../../assets/images-webp/welding/fifthCont1Img.webp"
+import fifthCont2Img from "../../assets/images-webp/welding/fifthCont2Img.webp"
+import fifthCont3Img from "../../assets/images-webp/welding/fifthCont3Img.webp"
+import fifthCont4Img from "../../assets/images-webp/welding/fifthCont4Img.webp"
+import fifthCont5Img from "../../assets/images-webp/sawing/fifthCont5Img.webp"
+import fifthCont6Img from "../../assets/images-webp/sawing/fifthCont6Img.webp"
+import fifthCont7Img from "../../assets/images-webp/welding/fifthCont7Img.webp"
+import fifthCont8Img from "../../assets/images-webp/sawing/fifthCont8Img.webp"
 
 import FormAudit from "../FormAudit/FormAudit";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";

@@ -1,22 +1,22 @@
 import React, { useRef } from "react";
 import classes from "./Welding.module.css";
 
-import logoForFon from "../../assets/images/welding/logoForFon.png"
+import logoForFon from "../../assets/images-webp/welding/logoForFon.webp"
 
-import secCont1Img from "../../assets/images/welding/secCont1Img.png"
-import secCont2Img from "../../assets/images/welding/secCont2Img.png"
-import secCont3Img from "../../assets/images/welding/secCont3Img.png"
-import alterSecCont3Img from "../../assets/images/welding/alterSecCont3Img.png"
+import secCont1Img from "../../assets/images-webp/welding/secCont1Img.webp"
+import secCont2Img from "../../assets/images-webp/welding/secCont2Img.webp"
+import secCont3Img from "../../assets/images-webp/welding/secCont3Img.webp"
+import alterSecCont3Img from "../../assets/images-webp/welding/alterSecCont3Img.webp"
 
-import advantageImg from "../../assets/images/welding/advantageImg.png"
+import advantageImg from "../../assets/images-webp/welding/advantageImg.webp"
 
-import fifthCont1Img from "../../assets/images/welding/fifthCont1Img.png"
-import fifthCont2Img from "../../assets/images/welding/fifthCont2Img.png"
-import fifthCont3Img from "../../assets/images/welding/fifthCont3Img.png"
-import fifthCont4Img from "../../assets/images/welding/fifthCont4Img.png"
-import fifthCont5Img from "../../assets/images/welding/fifthCont5Img.png"
-import fifthCont6Img from "../../assets/images/welding/fifthCont6Img.png"
-import fifthCont7Img from "../../assets/images/welding/fifthCont7Img.png"
+import fifthCont1Img from "../../assets/images-webp/welding/fifthCont1Img.webp"
+import fifthCont2Img from "../../assets/images-webp/welding/fifthCont2Img.webp"
+import fifthCont3Img from "../../assets/images-webp/welding/fifthCont3Img.webp"
+import fifthCont4Img from "../../assets/images-webp/welding/fifthCont4Img.webp"
+import fifthCont5Img from "../../assets/images-webp/welding/fifthCont5Img.webp"
+import fifthCont6Img from "../../assets/images-webp/welding/fifthCont6Img.webp"
+import fifthCont7Img from "../../assets/images-webp/welding/fifthCont7Img.webp"
 
 import FormAudit from "../FormAudit/FormAudit";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";

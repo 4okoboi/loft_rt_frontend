@@ -1,15 +1,15 @@
 import React, { useRef } from "react"
 import classes from "./AboutUs.module.css"
 
-import firstImg1 from "../../assets/images/about_us/b0084270453117 1.png"
-import firstImg2 from "../../assets/images/about_us/firstImg2.png"
+import firstImg1 from "../../assets/images-webp/about_us/b0084270453117 1.webp"
+import firstImg2 from "../../assets/images-webp/about_us/firstImg2.webp"
 import readBelow from "../../assets/images/about_us/Читай_ниже.svg"
 import whiteLogoImg from "../../assets/images/about_us/whiteLogoImg.svg";
 
 import loftLuxeTitleImg from "../../assets/images/about_us/Loft&LuxeImg.svg"
 
-import fotoMotok from "../../assets/images/about_us/fotoMotok.png"
-import alterFotoMotok from "../../assets/images/about_us/alterFotoMotok.png"
+import fotoMotok from "../../assets/images-webp/about_us/fotoMotok.webp"
+import alterFotoMotok from "../../assets/images-webp/about_us/alterFotoMotok.webp"
 import Materials from "../Materials/Materials"
 import logo from "../../assets/images/about_us/Group 4703.svg"
 import curvedLine from "../../assets/images/about_us/curvedLine.svg"

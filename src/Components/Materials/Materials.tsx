@@ -1,12 +1,12 @@
 import React, { useRef } from "react";
 import classes from "./Materials.module.css";
-import shicDisImg from "../../assets/images/Vector.png"
+import shicDisImg from "../../assets/images-webp/Vector.webp"
 import shicDis from "../../assets/images/Шикарный дизайн.svg"
 import shicDisText from "../../assets/images/shicDisText.svg"
-import woodImg from "../../assets/images/Group.png"
+import woodImg from "../../assets/images-webp/Group.webp"
 import onlyBestMat from "../../assets/images/Только лучшие материалы.svg"
 import woodText from "../../assets/images/woodText.svg"
-import smileImg from "../../assets/images/Group 4603.png"
+import smileImg from "../../assets/images-webp/Group 4603.webp"
 import bestPrices from "../../assets/images/Приятные цены.svg"
 import bestPricesText from "../../assets/images/bestPricesText.svg"
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";

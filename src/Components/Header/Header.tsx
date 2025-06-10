@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./Header.module.css";
 import {NavLink} from "react-router-dom";
-import logo from "../../assets/images/Group 4606.png"
+import logo from "../../assets/images-webp/Group 4606.webp"
 import phoneImg from "../../assets/images/Vector.svg"
 import BisnesMenu from "../BisnesMenu/BisnesMenu"
 import ServiceMenu from "../ServiceMenu/ServiceMenu"
