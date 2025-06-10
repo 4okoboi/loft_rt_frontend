@@ -32,11 +32,12 @@
 	},
 	"scripts": {
 		"dev": "vite",
-		"build": "tsc && vite build",
+		"build": "vite build",
 		"preview": "vite preview",
 		"start": "vite",
 		"test": "vitest",
 		"optimize-images": "node scripts/optimize-images.js",
+		"clean-original-images": "node scripts/clean-original-images.js",
 		"prebuild": "npm run optimize-images"
 	},
 	"eslintConfig": {

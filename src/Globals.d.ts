@@ -16,4 +16,8 @@ declare module '*.jpeg' {
 	const content: string
 	export default content
 }
+declare module '*.webp' {
+	const content: string
+	export default content
+}
 // and so on for whatever flavor of css you're using

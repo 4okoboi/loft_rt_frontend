@@ -77,6 +77,14 @@ async function optimizeImage(inputPath, outputDir, fileName, relativePath) {
 				webpStats.size / 1024
 			)}KB (сжатие ${savings}%)`
 		)
+
+		// Удаляем оригинальный файл
+		try {
+			fs.unlinkSync(inputPath)
+			console.log(`🗑️  Удален оригинал: ${fileName}`)
+		} catch (deleteError) {
+			console.log(`⚠️  Не удалось удалить ${fileName}: ${deleteError.message}`)
+		}
 	} catch (error) {
 		console.error(`❌ Ошибка при обработке ${fileName}:`, error.message)
 	}
