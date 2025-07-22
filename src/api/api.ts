@@ -4,7 +4,7 @@ import {
 } from "../utils/generalTypes";
 
 const instance = axios.create({
-    baseURL: "http://79.174.94.184:8080/",
+    baseURL: "http://79.174.86.248:8080",
 })
 
 export const CatalogAPI = {

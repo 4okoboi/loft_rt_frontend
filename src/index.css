@@ -21,3 +21,18 @@
   font-family:"NAMU-1850-otf";
   src: url("./assets/fonts/namu/NAMU-typefaces2019/Desktop/OTF/NAMU-1850.otf");
 }
+
+@font-face {
+  font-family:"NAMU-1960-otf";
+  src: url("./assets/fonts/namu/NAMU-typefaces2019/Desktop/OTF/NAMU-1960.otf");
+}
+
+@font-face {
+  font-family:"akzidenz-grotesk-pro-regular-ttf";
+  src: url("./assets/fonts/Akzidenz-Grotesk Pro/akzidenzgroteskpro_regular.ttf");
+}
+
+@font-face {
+  font-family:"golos-regular-ttf";
+  src: url("./assets/fonts/Golos/golostext_regular.ttf");
+}

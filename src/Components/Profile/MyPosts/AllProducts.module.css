@@ -15,10 +15,14 @@
 }
 
 .allWoodSpecies{
-    display: block;
-    color: #C9C9C9;
+    display: flex;
+    flex-direction: column;
+    height: 205px;
     font-size: 16.63px;
-    line-height: 21.46px;
+    justify-content: space-between;
+    font-family: akzidenz-grotesk-pro-regular-ttf;
+    letter-spacing: 0%;
+    /* line-height: 21.46px; */
 }
 
 .customRadio {
@@ -28,6 +32,7 @@
 .productsType{
     margin-top: 13px;
     color: #C9C9C9;
+    display: none;
 }
 
 .productsType div{
@@ -41,6 +46,8 @@
     font-size: 16.63px;
     line-height: 21.46px;
     margin-top: 30px;
+    display: none;
+
 }
 
 .customCheckbox {
@@ -75,6 +82,387 @@
     background-image: url("../../../assets/images/catalogs/checkMark.svg");
 }
 
+.filtersWrapper {
+    margin-top: 74px;
+    margin-bottom: 100px;
+    height: auto;
+}
+
+.filtersWithImgWrapper {
+    /* width: 84.562212%; */
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.filtersWithImg {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.filterWithImgWrapper {
+    width: 32.64%;
+    height:134px;
+    background-color: #191812;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding-left: 14px;
+    color: #FFFFFF;
+    transition: all .2s ease-in-out;
+    overflow: hidden;
+    cursor: pointer;
+    user-select: none;
+}
+
+.filterWithImgWrapperActive {
+    width: 32.64%;
+    height:134px;
+    background-color: #FFD600;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding-left: 14px;
+    color: #000000;
+    transition: all .2s ease-in-out;
+    overflow: hidden;
+    cursor: pointer;
+    user-select: none;
+
+}
+
+.filterWithImgWrapper:hover {
+    color: #000000;
+    background-color: #FFD600;
+}
+
+.labelWrapper {
+    height: 85%;
+    width: 40%;
+    display: flex;
+    align-items: end;
+}
+
+.filterLabel {
+    line-height: 100%;
+    font-family: NAMU-1850;
+    font-size: 15px;
+}
+.lastFilterLabel{
+    line-height: 90%;
+    font-family: NAMU-1850;
+    font-size: 15px;
+}
+
+.imgWrapper {
+    margin-left: 10px;
+    height: 100%;
+    width: 60%;
+    
+}
+
+.imgWrapper img {
+    width: 86.2068966%;
+    height: 97.0149254%;
+}
+
+.firstImg {
+    margin-left: 29.7%;
+    margin-top: 2.6%;
+    display: block;
+}
+
+@media(width <=1200px) and (width >=931px) {
+    .firstImg {
+        margin-left: 33.3%;
+    }
+}
+
+@media(width <=402px) {
+    .firstImg {
+        margin-top: 5%;
+    }
+}
+
+@media(width <=380px) {
+    .firstImg {
+        margin-top: 7%;
+    }
+}
+@media(width <=369px) {
+    .firstImg {
+        margin-top: 12%;
+    }
+}
+.secondImg {
+    margin-left: 13.6%;
+    margin-top: 20%;
+}
+
+@media(width <= 969px) and (width >=768px) {
+    .secondImg {
+        margin-top: 30%;
+    }
+}
+
+@media(width <=593px) {
+    .secondImg {
+        margin-top: 30%;
+    }
+}
+
+@media(width <=493px) {
+    .secondImg {
+        margin-top: 33%;
+    }
+}
+
+@media(width <=403px) {
+    .secondImg {
+        margin-top: 37%;
+    }
+}
+
+@media(width <=380px) {
+    .secondImg {
+        margin-top: 38%;
+    }
+}
+
+@media(width <=367px) {
+    .secondImg {
+        margin-top: 38%;
+    }
+}
+
+.thirdImg {
+    margin-left: 20%;
+    margin-top: 10%;
+}
+
+@media(width <=600px) {
+    .thirdImg {
+        margin-left: 15%;
+    }
+
+}
+
+
+.fourthImg {
+    margin-left: 15%;
+    margin-top: 10%;
+}
+
+@media(width <=600px) {
+    .fourthImg {
+        margin-top: 20%;
+    }
+}
+
+.fifthImg {
+    margin-left: 20%;
+    margin-top: 3%;
+}
+
+@media(width <=600px) {
+    .fifthImg {
+        margin-left: 13%;
+    }
+}
+
+
+.sixthImg {
+    margin-left: 15%;
+    margin-top: 5%;
+}
+
+@media(width <=600px) {
+    .sixthImg {
+        margin-top: 20%;
+    }
+}
+@media(width <=600px) and (width >=450px) {
+    .sixthImg {
+        margin-top:13%;
+    }
+}
+
+.commonFiltersWrapper {
+    /* height: 72px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.commonFilters {
+    /* width: 65.3173268%; */
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+    min-width: 332px;
+}
+
+.commonFiltersSecondRow {
+    width: 62.6463618%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.commonFilterButton {
+    padding: 0px 20px 0px 20px;
+    background-color: #1F1F1F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+    border-radius: 5px;
+    color:#FFFFFF;
+    font-family: NAMU-1850;
+    font-size: 15px;
+    transition: all .2s ease-in-out;
+    line-height: 80%;
+    position: relative;
+    height: 32px
+}
+
+.commonFilterButton:hover {
+    color: #000000;
+    background-color: #FFD600;
+}
+
+.woodSpecialWrapper {
+    padding: 0px 8px 0px 8px;
+    background-color: #1F1F1F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+    border-radius: 4.53px;
+    color:#FFFFFF;
+    font-family:NAMU-1960-otf;
+    font-size: 15px;
+    transition: all .2s ease-in-out;
+    line-height: 80%;
+    position: relative;
+}
+
+@media(width <=1700px) {
+    .filterWithImgWrapper {
+        width: calc(50% - 5px) !important;
+    }
+
+    .filterWithImgWrapperActive {
+        width: calc(50% - 5px) !important;
+    }
+
+    
+}
+@media(width <=1200px) {
+    .commonFiltersWrapper {
+        margin-top: 27px;
+    }
+
+    .allWoods {
+        /* width: 65.3173268%; */
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 12px;
+        min-width: 332px;
+    }
+
+    .products {
+        margin: 54px auto 0 auto ;
+    }
+
+    .searchAndSort {
+        margin: 0 auto !important;
+        position: static !important;
+        display: flex !important;
+        justify-content: space-between;
+    }
+
+    .rightProductsBlock {
+        margin: 0 auto !important;
+        flex-direction: column;
+        width: 90% !important;
+    }
+
+    .filtersWithImgWrapper {
+        width: 100% !important;
+    }
+
+    .commonFilters {
+        width: 100%;
+    }
+
+    .filtersWrapper {
+        flex-direction: column !important;
+        margin-top: 20px !important;
+    }
+
+
+}
+
+@media(width <=768px) {
+    .allWoods {
+        gap: 7px;
+    }
+    
+    .commonFilterButton {
+        font-size: 13px;
+    }
+
+    .woodSpecialWrapper {
+        font-size: 13px;
+    }
+
+    .commonFilters {
+        gap: 7px;
+    }
+
+    .rightProductsBlock {
+        width: 100% !important;
+    }
+
+    .filtersWithImg {
+        gap: 7px;
+    }
+    
+    .filterWithImgWrapper {
+        width: calc(50% - 3.5px) !important;
+        height:91.6px !important;
+    }
+    .filterWithImgWrapperActive {
+        width: calc(50% - 3.5px) !important;
+        height:91.6px !important;
+    }
+
+    .filterLabel {
+        font-size: 10px !important;
+    }
+
+    .lastFilterLabel {
+        font-size: 10px !important;
+    }
+    
+}
+
+@media (width <= 450px) {
+    .searchAndSort {
+        justify-content: space-between !important;
+    }
+
+
+}
+
 .rightProductsBlock{
     display: block;
     width: 74.76%;
@@ -86,18 +474,22 @@
     position: absolute;
     margin-right: 10%;
     gap: 20px;
+    height:34px;
 }
 
 .divSearchfield {
     width: 215px;
-    height: 27px;
+    height: 100% !important;
+    display: flex;
+    justify-content: end;
+    align-items: center;
 }
 
 .searchfield{
     background-color: #191919;
     border-radius: 2px;
     width: 204px;
-    height: 25px;
+    height: 100% !important;
     margin: 0;
     padding-left: 11px;
     border: 0;
@@ -115,9 +507,17 @@
     font-family: NAMU-1850;
 }
 
-.divSortfield {
-    width: 176px;
-    height: 27px;
+
+
+.sortSelection {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer; /* Важно для кликабельности */
+    z-index: 1;
 }
 
 /* .sortfield{
@@ -170,7 +570,7 @@
     /* padding: .6em 1.4em .5em .8em;  */
     padding-left: 11px;
     width: 176px;
-    height: 27px;
+    height: 100%;
     /* box-sizing: border-box;  */
     margin: 0;
     border: none;
@@ -238,7 +638,12 @@
     color: #ffffffa3;
     /* border: none; */
 }
-
+@media(width >= 520px) and (width <= 1200px) {
+    .divSearchfield {
+        display: flex;
+        justify-content: space-between !important;
+    }
+}
 @media screen and (max-width: 450px) {
     .products{
         display: flex;
@@ -253,7 +658,7 @@
         margin-top: 0px;
     }
     
-    .allWoodSpecies{
+    /* .allWoodSpecies{
         display: flex;
         flex-wrap: wrap;
         width: 100%;
@@ -261,7 +666,7 @@
         font-size: 10.4px;
         line-height: 12.48px;
         gap: 15.75px;
-    }
+    } */
     
     .productsType{
         display: none;
@@ -326,12 +731,12 @@
     }
     
     .searchAndSort{
-        display: flex;
+        /* display: flex;
         right: 0;
         position: absolute;
         justify-content: space-between;
         margin-right: 10%;
-        gap: 20px;
+        gap: 20px; */
     }
     
     .divSearchfield {
@@ -347,7 +752,8 @@
         margin: 0;
         padding-left: 11px;
         border: 0;
-        display: block;
+        display: flex;
+        justify-content: end !important;
         color: #ffffff99;
         background-image: url("../../../assets/images/catalogs/loupe.svg");
         background-repeat: no-repeat;
@@ -364,7 +770,6 @@
     .divSortfield {
         display: none;
         width: 176px;
-        height: 27px;
     }
 
     .filtAlt{
@@ -374,6 +779,7 @@
         line-height: 12.48px;
         padding: 6px;
         gap: 8px;
+        position: relative;
     }
     
     .sortfield { 

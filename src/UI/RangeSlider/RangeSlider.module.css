@@ -12,14 +12,28 @@ input[type=number] {
 
 .filters{
     width: 100%;
+		margin-top: 107px;
 }
 
 .priceinputs {
 	margin-top: 7px;
 	display: flex;
-	justify-content: space-between;
-	gap: 21px;
+	/* justify-content: space-between; */
 	z-index: 6;
+}
+
+.inputsSeparatorWrapper {
+	margin: 0 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.inputsSeparator {
+	background-color: #C9C9C9;
+	width: 13px;
+	height: 1px;
+	opacity: 0.9;
 }
 
 /* .pricelabel {
@@ -48,22 +62,28 @@ input[type=number] {
 .priceinput {
 	border: none;
 	color: #C9C9C9;
-	font-size: 14px;
-	align-items: center;
-	width: 109px;
+	font-size: 15.81px;
+	text-align: center;
+	font-family: golos-regular-ttf;
+	width: 78px;
 	height: 35px;
 	border-radius: 7px;
-	padding: 0 10px;
+	padding: 0;
 	background-color: #ffffff1a;
+	font-variant-numeric: tabular-nums;
 }
 
 .pricetitle {
 	color: #C9C9C9;
+	font-family: akzidenz-grotesk-pro-regular-ttf;
+	font-size: 16.63px;
+	font-weight: normal;
 	margin-bottom: 20px;
 }
 
 .priceslider {
-	width: 219.5px;
+	width: 200px;
 	margin-bottom: 20px;
+	color: #FFD600;
 }
 

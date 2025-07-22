@@ -22,10 +22,10 @@ export default defineConfig(({ command, mode }) => ({
 					const info = assetInfo.name?.split('.')
 					const extType = info?.[info.length - 1]
 					if (/png|jpe?g|svg|gif|tiff|bmp|ico|webp/i.test(extType || '')) {
-						return `assets/images/[name]-[hash][extname]`
+						return `assets/images/[name][extname]`
 					}
 					if (/css/i.test(extType || '')) {
-						return `assets/css/[name]-[hash][extname]`
+						return `assets/css/[name][extname]`
 					}
 					return `assets/[name]-[hash][extname]`
 				},

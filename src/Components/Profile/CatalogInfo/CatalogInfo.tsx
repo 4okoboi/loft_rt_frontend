@@ -1,8 +1,8 @@
 import React from "react"
 import {UserType, UserProfileType} from "../../../utils/generalTypes"
 import classes from "./CatalogInfo.module.css"
-import firstImg from "../../../assets/images-webp/catalogs/firstImg.webp"
-import alterFirstImg from "../../../assets/images-webp/catalogs/alterFirstImg.webp"
+import firstImg from "../../../assets/images-webp/catalogs/firstCatalogImg.png"
+import alterFirstImg from "../../../assets/images-webp/catalogs/alterFIrstCatalogImg.png"
 import SeeBelow from "../../SeeBelow/SeeBelow"
 
 type CatalogInfoPropsType = {
