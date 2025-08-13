@@ -49,6 +49,7 @@ export interface ProductType {
 	description: string
 	image: string
 	category: string
+	photo_links?: string[]
 	quantity?: number
 }
 

@@ -122,7 +122,7 @@ const AllProducts: React.FC<AllProductsFormPropsType> = (props) => {
   const [type, setType] = useState<Array<string>>([]);
   const [price_range, setPrice_range] = useState("1499-45999");
   const [sort, setSort] = useState("default");
-  const [search_query, setSearch_query] = useState();
+  const [search_query, setSearch_query] = useState<string>("");
 
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
@@ -216,17 +216,22 @@ const AllProducts: React.FC<AllProductsFormPropsType> = (props) => {
     const existingProduct = basketItems.find((item) => item.id === product.id);
 
     if (existingProduct) {
-      existingProduct.added_at = String(Number(existingProduct.added_at) + 1);
-      setBasketItems([...basketItems]);
+      // Обновляем количество существующего продукта
+      const updatedItems = basketItems.map((item) =>
+        item.id === product.id
+          ? { ...item, quantity: (item.quantity || 0) + counter }
+          : item
+      );
+      setBasketItems(updatedItems);
     } else {
-      product.added_at = String(counter);
-      setBasketItems([...basketItems, product]);
+      // Добавляем новый продукт
+      setBasketItems([...basketItems, { ...product, quantity: counter }]);
     }
   };
 
-  const removeItemById = (idToRemove: number): Array<ProductType> => {
+  const removeItemById = (idToRemove: number): void => {
     const updatedArray = basketItems.filter((item) => item.id !== idToRemove);
-    return setBasketItems(updatedArray);
+    setBasketItems(updatedArray);
   };
 
   const [articles, setArticles] = useState<Array<string>>([]);
@@ -627,7 +632,9 @@ const AllProducts: React.FC<AllProductsFormPropsType> = (props) => {
             <input
               placeholder={isMiniMobile ? "" : "Поиск"}
               className={classes.searchfield}
-              onChange={(event) => setSearch_query(event.target.value)}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                setSearch_query(event.target.value)
+              }
             />
           </div>
           <div className={classes.divSortfield}>
@@ -648,9 +655,9 @@ const AllProducts: React.FC<AllProductsFormPropsType> = (props) => {
                     : classes.filterWithImgWrapper
                 }
                 onClick={() => {
-									setSelectedCategory("Торговое оборудование")
-									setType([])
-								}}
+                  setSelectedCategory("Торговое оборудование");
+                  setType([]);
+                }}
               >
                 <div className={classes.labelWrapper}>
                   <div className={classes.filterLabel}>
@@ -668,9 +675,9 @@ const AllProducts: React.FC<AllProductsFormPropsType> = (props) => {
                     : classes.filterWithImgWrapper
                 }
                 onClick={() => {
-									setSelectedCategory("Офисная мебель")
-									setType([])
-								}}
+                  setSelectedCategory("Офисная мебель");
+                  setType([]);
+                }}
               >
                 <div className={classes.labelWrapper}>
                   <div className={classes.filterLabel}>Офисная мебель</div>
@@ -686,9 +693,9 @@ const AllProducts: React.FC<AllProductsFormPropsType> = (props) => {
                     : classes.filterWithImgWrapper
                 }
                 onClick={() => {
-									setSelectedCategory("Кафе, бары, рестораны")
-									setType([])
-								}}
+                  setSelectedCategory("Кафе, бары, рестораны");
+                  setType([]);
+                }}
               >
                 <div className={classes.labelWrapper}>
                   <div className={classes.filterLabel}>
@@ -706,9 +713,9 @@ const AllProducts: React.FC<AllProductsFormPropsType> = (props) => {
                     : classes.filterWithImgWrapper
                 }
                 onClick={() => {
-									setSelectedCategory("Мебель для дома")
-									setType([])
-								}}
+                  setSelectedCategory("Мебель для дома");
+                  setType([]);
+                }}
               >
                 <div className={classes.labelWrapper}>
                   <div className={classes.filterLabel}>Для дома</div>
@@ -724,9 +731,9 @@ const AllProducts: React.FC<AllProductsFormPropsType> = (props) => {
                     : classes.filterWithImgWrapper
                 }
                 onClick={() => {
-									setSelectedCategory("Кухни, шкафы купе")
-									setType([])
-								}}
+                  setSelectedCategory("Кухни, шкафы купе");
+                  setType([]);
+                }}
               >
                 <div className={classes.labelWrapper}>
                   <div className={classes.filterLabel}>
@@ -744,9 +751,9 @@ const AllProducts: React.FC<AllProductsFormPropsType> = (props) => {
                     : classes.filterWithImgWrapper
                 }
                 onClick={() => {
-									setSelectedCategory("Для гостиниц")
-									setType([])
-								}}
+                  setSelectedCategory("Для гостиниц");
+                  setType([]);
+                }}
               >
                 <div className={classes.labelWrapper}>
                   <div className={classes.lastFilterLabel}>
@@ -929,28 +936,48 @@ const AllProducts: React.FC<AllProductsFormPropsType> = (props) => {
           </div>
         </div>
         <div className={classes.productsList}>
-          {products.map((product: any) => {
-            return (
-              <Product
-                id={product.id}
-                name={product.name}
-                material={product.material}
-                size={product.size}
-                type={product.type}
-                for_what={product.for_what}
-                description={product.description}
-                photo_links={product.photo_links}
-                price={product.price}
-                unit={product.unit}
-                added_at={product.added_at}
-                setShopModal={setShopModal}
-                product={product}
-                addProduct={addProduct}
-                // itemInBasket = {itemInBasket}
-                // setItemToBasket={setItemToBasket}
-              />
-            );
-          })}
+          {props.isShowPreloader ? (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "200px",
+                fontSize: "18px",
+              }}
+            >
+              Загрузка товаров...
+            </div>
+          ) : products.length === 0 ? (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "200px",
+                fontSize: "18px",
+                color: "#666",
+              }}
+            >
+              Товары не найдены
+            </div>
+          ) : (
+            products.map((product: any) => {
+              return (
+                <Product
+                  key={product.id}
+                  id={product.id}
+                  name={product.name}
+                  material={product.category || ""}
+                  description={product.description}
+                  price={product.price}
+                  setShopModal={setShopModal}
+                  product={product}
+                  addProduct={addProduct}
+                />
+              );
+            })
+          )}
         </div>
         <div className={classes.allWoodSpecies}>
           <button
