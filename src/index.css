@@ -36,3 +36,7 @@
   font-family:"golos-regular-ttf";
   src: url("./assets/fonts/Golos/golostext_regular.ttf");
 }
+@font-face {
+  font-family:"gilroy-regular-ttf";
+  src: url("./assets/fonts/Gilroy/Gilroy-Regular.ttf");
+}
