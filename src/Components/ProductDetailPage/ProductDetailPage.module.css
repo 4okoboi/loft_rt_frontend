@@ -23,6 +23,10 @@
 	color: #a3a3a3;
 }
 
+.goldLike {
+	color: #ffd600;
+}
+
 /* Product Content */
 .productContent {
 	display: grid;
@@ -498,6 +502,7 @@
 	display: flex;
 	gap: 14px;
 	overflow: hidden;
+	height: 430px;
 }
 
 .productCard {
@@ -793,6 +798,7 @@
 		display: grid;
 		grid-template-columns: 1fr;
 		overflow: hidden;
+		max-height: 330px;
 	}
 
 	.productCard {
@@ -812,6 +818,7 @@
 
 	.detailsBtn {
 		padding: 11px 50px;
+		border-radius: 5px;
 	}
 
 	.cardButtons {
@@ -824,6 +831,8 @@
 		align-items: center;
 		justify-content: center;
 		padding: 11px 50px;
+		border-radius: 5px;
+
 	}
 
 	.cardCartBtn img {
