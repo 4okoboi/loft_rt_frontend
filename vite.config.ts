@@ -44,6 +44,7 @@ export default defineConfig(({ command, mode }) => ({
 		open: false, // Отключаем автоматическое открытие браузера для серверов
 		cors: true,
 		host: true, // Разрешаем подключения извне
+		allowedHosts: ['loft-rt.ru', 'www.loft-rt.ru', 'localhost', '127.0.0.1'],
 	},
 	assetsInclude: ['**/*.webp'],
 	preview: {
