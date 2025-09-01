@@ -1,52 +1,52 @@
-import React, { useState } from "react";
-import classes from "./Product.module.css";
-import { useNavigate } from "react-router-dom";
-import basket from "../../../../assets/images/catalogs/basket.svg";
-import fallbackImage from "../../../../assets/images/home_page_kitchen.png";
-import { ProductType } from "../../../../utils/generalTypes";
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import basket from '../../../../assets/images/catalogs/basket.svg'
+import fallbackImage from '../../../../assets/images/home_page_kitchen.png'
+import { ProductType } from '../../../../utils/generalTypes'
+import classes from './Product.module.css'
 
 type ProductElementType = {
-  id: number;
-  name: string;
-  material: string;
-  description: string;
-  price: number;
-  setShopModal: React.Dispatch<React.SetStateAction<boolean>>;
-  product: ProductType;
-  addProduct: (product: ProductType, counter: number) => void;
-};
+	id: number
+	name: string
+	material: string
+	description: string
+	price: number
+	setShopModal: React.Dispatch<React.SetStateAction<boolean>>
+	product: ProductType
+	addProduct: (product: ProductType, counter: number) => void
+}
 
-const Product: React.FC<ProductElementType> = (props) => {
-  const navigate = useNavigate();
-  const [imageError, setImageError] = useState(false);
+const Product: React.FC<ProductElementType> = props => {
+	const navigate = useNavigate()
+	const [imageError, setImageError] = useState(false)
 
-  const handleImageError = () => {
-    setImageError(true);
-  };
+	const handleImageError = () => {
+		setImageError(true)
+	}
 
-  const getImageSrc = () => {
-    const candidate =
-      props.product.photo_links && props.product.photo_links[0]
-        ? props.product.photo_links[0]
-        : props.product.image;
+	const getImageSrc = () => {
+		const candidate =
+			props.product.photo_links && props.product.photo_links[0]
+				? props.product.photo_links[0]
+				: props.product.image
 
-    if (imageError || !candidate) {
-      return fallbackImage;
-    }
+		if (imageError || !candidate) {
+			return fallbackImage
+		}
 
-    const url = candidate;
-    if (url.startsWith("http://") || url.startsWith("https://")) {
-      return url;
-    }
-    if (url.startsWith("/")) {
-      return `http://79.174.86.248:8080${url}`;
-    }
-    return `http://79.174.86.248:8080/${url}`;
-  };
+		const url = candidate
+		if (url.startsWith('http://') || url.startsWith('https://')) {
+			return url
+		}
+		if (url.startsWith('/')) {
+			return `https://79.174.86.248:8080${url}`
+		}
+		return `https://79.174.86.248:8080/${url}`
+	}
 
-  return (
-    <div className={classes.product}>
-      {/* Временно закомментирована модалка
+	return (
+		<div className={classes.product}>
+			{/* Временно закомментирована модалка
       <MyModal visible={itemModal} setVisible={setItemModal}>
         <ProductPage
           id={props.id}
@@ -67,48 +67,48 @@ const Product: React.FC<ProductElementType> = (props) => {
         />
       </MyModal>
       */}
-      <div className={classes.prodImg}>
-        <img
-          src={getImageSrc()}
-          alt={props.name}
-          onError={handleImageError}
-          style={{
-            maxWidth: "100%",
-            height: "auto",
-            objectFit: "cover",
-          }}
-        />
-      </div>
-      <div className={classes.title}>{props.name}</div>
-      <div className={classes.charact}>
-        <div>Категория: {props.material}</div>
-      </div>
-      <div className={classes.text}>{props.description}</div>
-      <div className={classes.price}>от {props.price}/ шт</div>
-      <div className={classes.buttons}>
-        <div className={classes.divMoreButton}>
-          <button
-            className={classes.moreButton}
-            onClick={() => navigate(`/product/${props.id}`)}
-          >
-            Подробнее
-          </button>
-        </div>
-        <div className={classes.divBasketButton}>
-          <button
-            className={classes.basketButton}
-            onClick={() => {
-              props.setShopModal(true);
-              props.addProduct(props.product, 1);
-            }}
-          >
-            <img src={basket} />
-            <div>В корзину</div>
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
+			<div className={classes.prodImg}>
+				<img
+					src={getImageSrc()}
+					alt={props.name}
+					onError={handleImageError}
+					style={{
+						maxWidth: '100%',
+						height: 'auto',
+						objectFit: 'cover',
+					}}
+				/>
+			</div>
+			<div className={classes.title}>{props.name}</div>
+			<div className={classes.charact}>
+				<div>Категория: {props.material}</div>
+			</div>
+			<div className={classes.text}>{props.description}</div>
+			<div className={classes.price}>от {props.price}/ шт</div>
+			<div className={classes.buttons}>
+				<div className={classes.divMoreButton}>
+					<button
+						className={classes.moreButton}
+						onClick={() => navigate(`/product/${props.id}`)}
+					>
+						Подробнее
+					</button>
+				</div>
+				<div className={classes.divBasketButton}>
+					<button
+						className={classes.basketButton}
+						onClick={() => {
+							props.setShopModal(true)
+							props.addProduct(props.product, 1)
+						}}
+					>
+						<img src={basket} />
+						<div>В корзину</div>
+					</button>
+				</div>
+			</div>
+		</div>
+	)
+}
 
-export default Product;
+export default Product
