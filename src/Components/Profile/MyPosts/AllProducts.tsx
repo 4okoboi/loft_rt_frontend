@@ -1,1025 +1,1051 @@
-import React, { useEffect, useState } from "react";
-import fifth_image from "../../../assets/images-webp/catalog/fifth_img.svg";
-import first_image from "../../../assets/images-webp/catalog/first_img.svg";
-import fourth_image from "../../../assets/images-webp/catalog/fourth_img.svg";
-import second_image from "../../../assets/images-webp/catalog/second_img.svg";
-import sixth_image from "../../../assets/images-webp/catalog/sixth_img.svg";
-import third_image from "../../../assets/images-webp/catalog/third_img.svg";
-import filtImg from "../../../assets/images/catalogs/filtImg.svg";
-import { useTypedDispatch, useTypedSelector } from "../../../redux/redux-store";
-import MyModal from "../../../UI/MyModal/MyModal";
-import RangeSlider from "../../../UI/RangeSlider/RangeSlider";
-import { ProductType } from "../../../utils/generalTypes";
-import BasketPage from "../../BasketPage/BasketPage";
-import classes from "./AllProducts.module.css";
-import Product from "./Product/Product";
+import React, { useEffect, useState } from 'react'
+import fifth_image from '../../../assets/images-webp/catalog/fifth_img.svg'
+import first_image from '../../../assets/images-webp/catalog/first_img.svg'
+import fourth_image from '../../../assets/images-webp/catalog/fourth_img.svg'
+import second_image from '../../../assets/images-webp/catalog/second_img.svg'
+import sixth_image from '../../../assets/images-webp/catalog/sixth_img.svg'
+import third_image from '../../../assets/images-webp/catalog/third_img.svg'
+import filtImg from '../../../assets/images/catalogs/filtImg.svg'
+import { useTypedDispatch, useTypedSelector } from '../../../redux/redux-store'
+import MyModal from '../../../UI/MyModal/MyModal'
+import RangeSlider from '../../../UI/RangeSlider/RangeSlider'
+import { ProductType } from '../../../utils/generalTypes'
+import BasketPage from '../../BasketPage/BasketPage'
+import classes from './AllProducts.module.css'
+import Product from './Product/Product'
 
 type AllProductsFormPropsType = {
-  products: Array<ProductType>;
-  isShowPreloader: boolean;
-  getProducts: (
-    counter: string,
-    material: string,
-    type: string,
-    price_range: string,
-    sort: string,
-    search_query: string
-  ) => void;
-  getItem: (itemId: string) => void;
-  postAudit: (
-    name: string,
-    number: string,
-    comment: string,
-    items: string
-  ) => void;
-};
+	products: Array<ProductType>
+	isShowPreloader: boolean
+	getProducts: (
+		counter: string,
+		material: string,
+		type: string,
+		price_range: string,
+		sort: string,
+		search_query: string
+	) => void
+	getItem: (itemId: string) => void
+	postAudit: (
+		name: string,
+		number: string,
+		comment: string,
+		items: string
+	) => void
+}
 
 const filtersData: Array<string> = [
-  "Кухни",
-  "Шкафы",
-  "Столы",
-  "Стеллажи",
-  "Кухонные столы",
-  "Скамейки",
-  "Журнальные столы",
-  "Тумбы под TV",
-  "Зеркала",
-  "Стулья",
-  "Консоли",
-  "Диваны",
-  "Кровати",
-];
+	'Кухни',
+	'Шкафы',
+	'Столы',
+	'Стеллажи',
+	'Кухонные столы',
+	'Скамейки',
+	'Журнальные столы',
+	'Тумбы под TV',
+	'Зеркала',
+	'Стулья',
+	'Консоли',
+	'Диваны',
+	'Кровати',
+]
 
 const categoriesData: Record<string, Array<string>> = {
-  "Торговое оборудование": [
-    "Рейлы",
-    "Вешала",
-    "Стеллажи",
-    "Ресепшены",
-    "Демонстрационные столы",
-    "Примерочные",
-    "Зеркала",
-    "Витрины",
-    "Журнальные столы",
-  ],
-  "Офисная мебель": [
-    "Столы",
-    "Столы переговорные",
-    "Столы руководительские",
-    "Тумбы",
-    "Шкафы",
-    "Стеллажи",
-    "Диваны",
-    "Ресепшены",
-    "Стулья",
-    "Кухни",
-  ],
-  "Кафе, бары, рестораны": ["Столы для кафе", "Диваны", "Стеллажи", "Стулья"],
-  "Мебель для дома": [
-    "Кухни",
-    "Шкафы",
-    "Столы",
-    "Кухонные столы",
-    "Стеллажи",
-    "Тумбы под ТВ",
-    "Журнальные столы",
-    "Скамейки",
-    "Зеркала",
-    "Кровати",
-    "Диваны",
-    "Консоли",
-    "Стулья",
-  ],
-  "Кухни, шкафы купе": [],
-  "Для гостиниц": [
-    "Кухни",
-    "Шкафы",
-    "Столы",
-    "Кухонные столы",
-    "Стеллажи",
-    "Тумбы под ТВ",
-    "Журнальные столы",
-    "Скамейки",
-    "Зеркала",
-    "Кровати",
-    "Диваны",
-    "Консоли",
-    "Стулья",
-  ],
-};
+	'Торговое оборудование': [
+		'Рейлы',
+		'Вешала',
+		'Стеллажи',
+		'Ресепшены',
+		'Демонстрационные столы',
+		'Примерочные',
+		'Зеркала',
+		'Витрины',
+		'Журнальные столы',
+	],
+	'Офисная мебель': [
+		'Столы',
+		'Столы переговорные',
+		'Столы руководительские',
+		'Тумбы',
+		'Шкафы',
+		'Стеллажи',
+		'Диваны',
+		'Ресепшены',
+		'Стулья',
+		'Кухни',
+	],
+	'Кафе, бары, рестораны': ['Столы для кафе', 'Диваны', 'Стеллажи', 'Стулья'],
+	'Мебель для дома': [
+		'Кухни',
+		'Шкафы',
+		'Столы',
+		'Кухонные столы',
+		'Стеллажи',
+		'Тумбы под ТВ',
+		'Журнальные столы',
+		'Скамейки',
+		'Зеркала',
+		'Кровати',
+		'Диваны',
+		'Консоли',
+		'Стулья',
+	],
+	'Кухни, шкафы купе': [],
+	'Для гостиниц': [
+		'Кухни',
+		'Шкафы',
+		'Столы',
+		'Кухонные столы',
+		'Стеллажи',
+		'Тумбы под ТВ',
+		'Журнальные столы',
+		'Скамейки',
+		'Зеркала',
+		'Кровати',
+		'Диваны',
+		'Консоли',
+		'Стулья',
+	],
+}
 
-const AllProducts: React.FC<AllProductsFormPropsType> = (props) => {
-  const products = useTypedSelector((state) => state.catalogPage.products);
+const AllProducts: React.FC<AllProductsFormPropsType> = props => {
+	console.log('=== AllProducts component rendered ===')
 
-  const dispatch = useTypedDispatch();
+	const products = useTypedSelector(state => state.catalogPage.products)
 
-  const [shopModal, setShopModal] = useState(false);
+	const dispatch = useTypedDispatch()
 
-  const [selected, setSelected] = useState("Все_породы_дерева");
+	const [shopModal, setShopModal] = useState(false)
 
-  const [counter, setCounter] = useState(1);
-  const [material, setMaterial] = useState("none");
-  const [type, setType] = useState<Array<string>>([]);
-  const [price_range, setPrice_range] = useState("1499-45999");
-  const [sort, setSort] = useState("default");
-  const [search_query, setSearch_query] = useState<string>("");
+	const [selected, setSelected] = useState('Все_породы_дерева')
 
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+	const [counter, setCounter] = useState(1)
+	const [material, setMaterial] = useState('none')
+	const [type, setType] = useState<Array<string>>([])
+	const [price_range, setPrice_range] = useState('1499-45999')
+	const [sort, setSort] = useState('default')
+	const [search_query, setSearch_query] = useState<string>('')
 
-  const currentSubcategories = selectedCategory
-    ? categoriesData[selectedCategory]
-    : [];
+	const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSelected(e.target.value);
-    switch (e.target.value) {
-      case "Все_породы_дерева":
-        return setMaterial("none");
-      case "Хвоя":
-        return setMaterial("хвоя");
-      case "Ангарская_сосна":
-        return setMaterial("ангарская_сосна");
-      case "Берёза":
-        return setMaterial("берёза");
-      case "Лиственница":
-        return setMaterial("лиственница");
-      case "Дуб":
-        return setMaterial("дуб");
-      case "Кедр":
-        return setMaterial("кедр");
-      default:
-        return setMaterial("none");
-    }
-  };
+	const currentSubcategories = selectedCategory
+		? categoriesData[selectedCategory]
+		: []
 
-  const handleSort = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    switch (event.target.value) {
-      case "Порядок: по умолча":
-        setSort("default");
-        break;
-      case "Порядок: цена вверх":
-        setSort("priceup");
-        break;
-      case "Порядок: цена вниз":
-        setSort("pricedown");
-        break;
-      default:
-        setSort("default");
-        break;
-    }
-  };
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setSelected(e.target.value)
+		console.log('🎯 handleChange - selected:', e.target.value)
+		switch (e.target.value) {
+			case 'Все_породы_дерева':
+				console.log('🔄 Setting material to: none')
+				return setMaterial('none')
+			case 'Хвоя':
+				console.log('🔄 Setting material to: Хвоя')
+				return setMaterial('Хвоя')
+			case 'Ангарская_сосна':
+				console.log('🔄 Setting material to: Ангарская_сосна')
+				return setMaterial('Ангарская_сосна')
+			case 'Берёза':
+				console.log('🔄 Setting material to: Берёза')
+				return setMaterial('Берёза')
+			case 'Лиственница':
+				console.log('🔄 Setting material to: Лиственница')
+				return setMaterial('Лиственница')
+			case 'Дуб':
+				console.log('🔄 Setting material to: Дуб')
+				return setMaterial('Дуб')
+			case 'Кедр':
+				console.log('🔄 Setting material to: Кедр')
+				return setMaterial('Кедр')
+			default:
+				console.log('🔄 Setting material to: none (default)')
+				return setMaterial('none')
+		}
+	}
 
-  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const label = event.target.name;
+	const handleSort = (event: React.ChangeEvent<HTMLSelectElement>) => {
+		switch (event.target.value) {
+			case 'Порядок: по умолча':
+				setSort('default')
+				break
+			case 'Порядок: цена вверх':
+				setSort('priceup')
+				break
+			case 'Порядок: цена вниз':
+				setSort('pricedown')
+				break
+			default:
+				setSort('default')
+				break
+		}
+	}
 
-    if (label === "все") {
-      if (event.target.checked) {
-        const allLabels = [
-          "вешало",
-          "журнальные столики",
-          "консоли",
-          "кухня",
-          "рейлы",
-          "ресепшн",
-          "стелажи",
-          "стол переговорный",
-          "стол руководителя",
-          "столы",
-          "стулья",
-          "торговый островок",
-          "тумбы",
-          "шкафы",
-          "прочее",
-        ];
-        setType(allLabels);
-      } else {
-        setType([]);
-      }
-    } else {
-      setType((prevType) => {
-        if (event.target.checked) {
-          return [...prevType, label];
-        } else {
-          return prevType.filter((item) => item !== label);
-        }
-      });
-    }
-  };
+	const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const label = event.target.name
 
-  const handlePrice_range = (range0: number, range1: number) => {
-    setPrice_range(String(range0) + "-" + String(range1));
-  };
+		if (label === 'все') {
+			if (event.target.checked) {
+				const allLabels = [
+					'вешало',
+					'журнальные столики',
+					'консоли',
+					'кухня',
+					'рейлы',
+					'ресепшн',
+					'стелажи',
+					'стол переговорный',
+					'стол руководителя',
+					'столы',
+					'стулья',
+					'торговый островок',
+					'тумбы',
+					'шкафы',
+					'прочее',
+				]
+				setType(allLabels)
+			} else {
+				setType([])
+			}
+		} else {
+			setType(prevType => {
+				if (event.target.checked) {
+					return [...prevType, label]
+				} else {
+					return prevType.filter(item => item !== label)
+				}
+			})
+		}
+	}
 
-  const [basketItems, setBasketItems] = useState<Array<ProductType>>([]);
+	const handlePrice_range = (range0: number, range1: number) => {
+		setPrice_range(String(range0) + '-' + String(range1))
+	}
 
-  const addProduct = (product: ProductType, counter: number) => {
-    const existingProduct = basketItems.find((item) => item.id === product.id);
+	const [basketItems, setBasketItems] = useState<Array<ProductType>>([])
 
-    if (existingProduct) {
-      // Обновляем количество существующего продукта
-      const updatedItems = basketItems.map((item) =>
-        item.id === product.id
-          ? { ...item, quantity: (item.quantity || 0) + counter }
-          : item
-      );
-      setBasketItems(updatedItems);
-    } else {
-      // Добавляем новый продукт
-      setBasketItems([...basketItems, { ...product, quantity: counter }]);
-    }
-  };
+	const addProduct = (product: ProductType, counter: number) => {
+		const existingProduct = basketItems.find(item => item.id === product.id)
 
-  const removeItemById = (idToRemove: number): void => {
-    const updatedArray = basketItems.filter((item) => item.id !== idToRemove);
-    setBasketItems(updatedArray);
-  };
+		if (existingProduct) {
+			// Обновляем количество существующего продукта
+			const updatedItems = basketItems.map(item =>
+				item.id === product.id
+					? { ...item, quantity: (item.quantity || 0) + counter }
+					: item
+			)
+			setBasketItems(updatedItems)
+		} else {
+			// Добавляем новый продукт
+			setBasketItems([...basketItems, { ...product, quantity: counter }])
+		}
+	}
 
-  const [articles, setArticles] = useState<Array<string>>([]);
+	const removeItemById = (idToRemove: number): void => {
+		const updatedArray = basketItems.filter(item => item.id !== idToRemove)
+		setBasketItems(updatedArray)
+	}
 
-  const addArticle = (article: string) => {
-    setArticles([...articles, article]);
-  };
+	const [articles, setArticles] = useState<Array<string>>([])
 
-  const removeArticle = (stringToRemove: string) => {
-    const updatedArray = articles.filter((item) => item !== stringToRemove);
-    return setArticles(updatedArray);
-  };
+	const addArticle = (article: string) => {
+		setArticles([...articles, article])
+	}
 
-  useEffect(() => {
-    props.getProducts(
-      String(counter),
-      material,
-      type.join("_"),
-      price_range,
-      sort,
-      search_query
-    );
-  }, [counter, material, type, price_range, sort, search_query]);
+	const removeArticle = (stringToRemove: string) => {
+		const updatedArray = articles.filter(item => item !== stringToRemove)
+		return setArticles(updatedArray)
+	}
 
-  const [isMobile, setIsMobile] = useState(false);
+	useEffect(() => {
+		console.log('🔍 useEffect triggered')
+		console.log('📦 material:', material)
+		console.log('🔢 counter:', counter)
+		props.getProducts(
+			String(counter),
+			material,
+			type.join('_'),
+			price_range,
+			sort,
+			search_query
+		)
+	}, [counter, material, type, price_range, sort, search_query])
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1200);
-    };
+	const [isMobile, setIsMobile] = useState(false)
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+	useEffect(() => {
+		const handleResize = () => {
+			setIsMobile(window.innerWidth < 1200)
+		}
 
-  const [isMiniMobile, setIsMiniMobile] = useState(false);
+		handleResize()
+		window.addEventListener('resize', handleResize)
+		return () => window.removeEventListener('resize', handleResize)
+	}, [])
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMiniMobile(window.innerWidth < 450);
-    };
+	const [isMiniMobile, setIsMiniMobile] = useState(false)
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+	useEffect(() => {
+		const handleResize = () => {
+			setIsMiniMobile(window.innerWidth < 450)
+		}
 
-  const handleFilterWord = (filter: string) => {
-    return filter.toLowerCase().split(" ").join("_");
-  };
+		handleResize()
+		window.addEventListener('resize', handleResize)
+		return () => window.removeEventListener('resize', handleResize)
+	}, [])
 
-  return (
-    <div className={classes.products}>
-      <MyModal visible={shopModal} setVisible={setShopModal}>
-        <BasketPage
-          basketItems={basketItems}
-          setBasketItems={setBasketItems}
-          addProduct={addProduct}
-          removeItemById={removeItemById}
-        />
-      </MyModal>
-      <div
-        className={classes.leftFilterBlock}
-        style={{ display: isMobile ? "none" : "block" }}
-      >
-        <div className={classes.allWoodSpecies}>
-          <div>
-            <input
-              className={classes.customRadio}
-              name="color"
-              type="radio"
-              id="Все_породы_дерева"
-              value="Все_породы_дерева"
-              checked={selected === "Все_породы_дерева"}
-              onChange={handleChange}
-            />
-            <label
-              htmlFor="Все_породы_дерева"
-              style={{
-                opacity: selected === "Все_породы_дерева" ? 1 : 0.6,
-                color: "#C9C9C9",
-              }}
-            >
-              Все породы дерева
-            </label>
-          </div>
-          <div>
-            <input
-              className={classes.customRadio}
-              name="color"
-              type="radio"
-              id="Хвоя"
-              value="Хвоя"
-              checked={selected === "Хвоя"}
-              onChange={handleChange}
-            />
-            <label
-              htmlFor="Хвоя"
-              style={{
-                opacity: selected === "Хвоя" ? 1 : 0.6,
-                color: "#C9C9C9",
-              }}
-            >
-              Хвоя
-            </label>
-          </div>
-          <div>
-            <input
-              className={classes.customRadio}
-              name="color"
-              type="radio"
-              id="Ангарская_сосна"
-              value="Ангарская_сосна"
-              checked={selected === "Ангарская_сосна"}
-              onChange={handleChange}
-            />
-            <label
-              htmlFor="Ангарская_сосна"
-              style={{
-                opacity: selected === "Ангарская_сосна" ? 1 : 0.6,
-                color: "#C9C9C9",
-              }}
-            >
-              Ангарская сосна
-            </label>
-          </div>
-          <div>
-            <input
-              className={classes.customRadio}
-              name="color"
-              type="radio"
-              id="Берёза"
-              value="Берёза"
-              checked={selected === "Берёза"}
-              onChange={handleChange}
-            />
-            <label
-              htmlFor="Берёза"
-              style={{
-                opacity: selected === "Берёза" ? 1 : 0.6,
-                color: "#C9C9C9",
-              }}
-            >
-              Берёза
-            </label>
-          </div>
-          <div>
-            <input
-              className={classes.customRadio}
-              name="color"
-              type="radio"
-              id="Лиственница"
-              value="Лиственница"
-              checked={selected === "Лиственница"}
-              onChange={handleChange}
-            />
-            <label
-              htmlFor="Лиственница"
-              style={{
-                opacity: selected === "Лиственница" ? 1 : 0.6,
-                color: "#C9C9C9",
-              }}
-            >
-              Лиственница
-            </label>
-          </div>
-          <div>
-            <input
-              className={classes.customRadio}
-              name="color"
-              type="radio"
-              id="Дуб"
-              value="Дуб"
-              checked={selected === "Дуб"}
-              onChange={handleChange}
-            />
-            <label
-              htmlFor="Дуб"
-              style={{
-                opacity: selected === "Дуб" ? 1 : 0.6,
-                color: "#C9C9C9",
-              }}
-            >
-              Дуб
-            </label>
-          </div>
-          <div>
-            <input
-              className={classes.customRadio}
-              name="color"
-              type="radio"
-              id="Кедр"
-              value="Кедр"
-              checked={selected === "Кедр"}
-              onChange={handleChange}
-            />
-            <label
-              htmlFor="Кедр"
-              style={{
-                opacity: selected === "Кедр" ? 1 : 0.6,
-                color: "#C9C9C9",
-              }}
-            >
-              Кедр
-            </label>
-          </div>
-        </div>
-        <div className={classes.rangeSlider}>
-          <RangeSlider handlePrice_range={handlePrice_range} />
-        </div>
-        <div className={classes.checkTitle}>Тип товара:</div>
-        <div className={classes.productsType}>
-          <div>
-            <input
-              type="checkbox"
-              className={classes.customCheckbox}
-              id="все"
-              name="все"
-              onChange={handleCheckboxChange}
-            />
-            <label htmlFor="все">Все</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              className={classes.customCheckbox}
-              id="вешало"
-              name="вешало"
-              onChange={handleCheckboxChange}
-              checked={type.includes("вешало")}
-            />
-            <label htmlFor="вешало">Вешало</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              className={classes.customCheckbox}
-              id="журнальные столики"
-              name="журнальные столики"
-              onChange={handleCheckboxChange}
-              checked={type.includes("журнальные столики")}
-            />
-            <label htmlFor="журнальные столики">Журнальные столики</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              className={classes.customCheckbox}
-              id="консоли"
-              name="консоли"
-              onChange={handleCheckboxChange}
-              checked={type.includes("консоли")}
-            />
-            <label htmlFor="консоли">Консоли</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              className={classes.customCheckbox}
-              id="кухня"
-              name="кухня"
-              onChange={handleCheckboxChange}
-              checked={type.includes("кухня")}
-            />
-            <label htmlFor="кухня">Кухня</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              className={classes.customCheckbox}
-              id="рейлы"
-              name="рейлы"
-              onChange={handleCheckboxChange}
-              checked={type.includes("рейлы")}
-            />
-            <label htmlFor="рейлы">Рейлы</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              className={classes.customCheckbox}
-              id="ресепшн"
-              name="ресепшн"
-              onChange={handleCheckboxChange}
-              checked={type.includes("ресепшн")}
-            />
-            <label htmlFor="ресепшн">Ресепшн</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              className={classes.customCheckbox}
-              id="стол переговорный"
-              name="стол переговорный"
-              onChange={handleCheckboxChange}
-              checked={type.includes("стол переговорный")}
-            />
-            <label htmlFor="стол переговорный">Стол переговорный</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              className={classes.customCheckbox}
-              id="стол руководителя"
-              name="стол руководителя"
-              onChange={handleCheckboxChange}
-              checked={type.includes("стол руководителя")}
-            />
-            <label htmlFor="стол руководителя">Стол руководителя</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              className={classes.customCheckbox}
-              id="столы"
-              name="столы"
-              onChange={handleCheckboxChange}
-              checked={type.includes("столы")}
-            />
-            <label htmlFor="столы">Столы</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              className={classes.customCheckbox}
-              id="стулья"
-              name="стулья"
-              onChange={handleCheckboxChange}
-              checked={type.includes("стулья")}
-            />
-            <label htmlFor="стулья">Стулья</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              className={classes.customCheckbox}
-              id="торговый островок"
-              name="торговый островок"
-              onChange={handleCheckboxChange}
-              checked={type.includes("торговый островок")}
-            />
-            <label htmlFor="торговый островок">Торговый островок</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              className={classes.customCheckbox}
-              id="тумбы"
-              name="тумбы"
-              onChange={handleCheckboxChange}
-              checked={type.includes("тумбы")}
-            />
-            <label htmlFor="тумбы">Тумбы</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              className={classes.customCheckbox}
-              id="шкафы"
-              name="шкафы"
-              onChange={handleCheckboxChange}
-              checked={type.includes("шкафы")}
-            />
-            <label htmlFor="шкафы">Шкафы</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              className={classes.customCheckbox}
-              id="прочее"
-              name="прочее"
-              onChange={handleCheckboxChange}
-              checked={type.includes("прочее")}
-            />
-            <label htmlFor="прочее">Прочее</label>
-          </div>
-        </div>
-      </div>
-      <div className={classes.rightProductsBlock}>
-        <div className={classes.searchAndSort}>
-          <div className={classes.filtAlt} style={{ cursor: "pointer" }}>
-            <div>
-              <img src={filtImg} />
-            </div>
-            <div style={{ fontFamily: "NAMU-1960-otf", position: "relative" }}>
-              Фильтры
-              <div className={classes.sortSelection}>
-                <select className={classes.sortfield} onChange={handleSort}>
-                  <option>Порядок: по умолча</option>
-                  <option>Порядок: цена вверх</option>
-                  <option>Порядок: цена вниз</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div className={classes.divSearchfield}>
-            <input
-              placeholder={isMiniMobile ? "" : "Поиск"}
-              className={classes.searchfield}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                setSearch_query(event.target.value)
-              }
-            />
-          </div>
-          <div className={classes.divSortfield}>
-            <select className={classes.sortfield} onChange={handleSort}>
-              <option>Порядок: по умолча</option>
-              <option>Порядок: цена вверх</option>
-              <option>Порядок: цена вниз</option>
-            </select>
-          </div>
-        </div>
-        <div className={classes.filtersWrapper}>
-          <div className={classes.filtersWithImgWrapper}>
-            <div className={classes.filtersWithImg}>
-              <div
-                className={
-                  selectedCategory === "Торговое оборудование"
-                    ? classes.filterWithImgWrapperActive
-                    : classes.filterWithImgWrapper
-                }
-                onClick={() => {
-                  setSelectedCategory("Торговое оборудование");
-                  setType([]);
-                }}
-              >
-                <div className={classes.labelWrapper}>
-                  <div className={classes.filterLabel}>
-                    Торговое оборудование
-                  </div>
-                </div>
-                <div className={classes.imgWrapper}>
-                  <img src={first_image} className={classes.firstImg} />
-                </div>
-              </div>
-              <div
-                className={
-                  selectedCategory === "Офисная мебель"
-                    ? classes.filterWithImgWrapperActive
-                    : classes.filterWithImgWrapper
-                }
-                onClick={() => {
-                  setSelectedCategory("Офисная мебель");
-                  setType([]);
-                }}
-              >
-                <div className={classes.labelWrapper}>
-                  <div className={classes.filterLabel}>Офисная мебель</div>
-                </div>
-                <div className={classes.imgWrapper}>
-                  <img src={second_image} className={classes.secondImg} />
-                </div>
-              </div>
-              <div
-                className={
-                  selectedCategory === "Кафе, бары, рестораны"
-                    ? classes.filterWithImgWrapperActive
-                    : classes.filterWithImgWrapper
-                }
-                onClick={() => {
-                  setSelectedCategory("Кафе, бары, рестораны");
-                  setType([]);
-                }}
-              >
-                <div className={classes.labelWrapper}>
-                  <div className={classes.filterLabel}>
-                    Кафе<br></br>Бары<br></br>Рестораны
-                  </div>
-                </div>
-                <div className={classes.imgWrapper}>
-                  <img src={third_image} className={classes.thirdImg} />
-                </div>
-              </div>
-              <div
-                className={
-                  selectedCategory === "Мебель для дома"
-                    ? classes.filterWithImgWrapperActive
-                    : classes.filterWithImgWrapper
-                }
-                onClick={() => {
-                  setSelectedCategory("Мебель для дома");
-                  setType([]);
-                }}
-              >
-                <div className={classes.labelWrapper}>
-                  <div className={classes.filterLabel}>Для дома</div>
-                </div>
-                <div className={classes.imgWrapper}>
-                  <img src={fourth_image} className={classes.fourthImg} />
-                </div>
-              </div>
-              <div
-                className={
-                  selectedCategory === "Кухни, шкафы купе"
-                    ? classes.filterWithImgWrapperActive
-                    : classes.filterWithImgWrapper
-                }
-                onClick={() => {
-                  setSelectedCategory("Кухни, шкафы купе");
-                  setType([]);
-                }}
-              >
-                <div className={classes.labelWrapper}>
-                  <div className={classes.filterLabel}>
-                    Кухни<br></br>Шкафы купе
-                  </div>
-                </div>
-                <div className={classes.imgWrapper}>
-                  <img src={fifth_image} className={classes.fifthImg} />
-                </div>
-              </div>
-              <div
-                className={
-                  selectedCategory === "Для гостиниц"
-                    ? classes.filterWithImgWrapperActive
-                    : classes.filterWithImgWrapper
-                }
-                onClick={() => {
-                  setSelectedCategory("Для гостиниц");
-                  setType([]);
-                }}
-              >
-                <div className={classes.labelWrapper}>
-                  <div className={classes.lastFilterLabel}>
-                    Для<br></br>гостиниц
-                  </div>
-                </div>
-                <div className={classes.imgWrapper}>
-                  <img src={sixth_image} className={classes.sixthImg} />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            className={classes.allWoods}
-            style={{ display: isMobile ? "flex" : "none" }}
-          >
-            <div className={classes.woodSpecialWrapper}>
-              <input
-                className={classes.customRadio}
-                name="color"
-                type="radio"
-                id="Все_породы_дерева"
-                value="Все_породы_дерева"
-                checked={selected === "Все_породы_дерева"}
-                onChange={handleChange}
-              />
-              <label
-                htmlFor="Все_породы_дерева"
-                style={{
-                  opacity: selected === "Все_породы_дерева" ? 1 : 0.3,
-                  color: "#C9C9C9",
-                }}
-              >
-                Все породы дерева
-              </label>
-            </div>
-            <div className={classes.woodSpecialWrapper}>
-              <input
-                className={classes.customRadio}
-                name="color"
-                type="radio"
-                id="Ангарская_сосна"
-                value="Ангарская_сосна"
-                checked={selected === "Ангарская_сосна"}
-                onChange={handleChange}
-              />
-              <label
-                htmlFor="Ангарская_сосна"
-                style={{
-                  opacity: selected === "Ангарская_сосна" ? 1 : 0.3,
-                  color: "#C9C9C9",
-                }}
-              >
-                Ангарская сосна
-              </label>
-            </div>
-            <div className={classes.woodSpecialWrapper}>
-              <input
-                className={classes.customRadio}
-                name="color"
-                type="radio"
-                id="Хвоя"
-                value="Хвоя"
-                checked={selected === "Хвоя"}
-                onChange={handleChange}
-              />
-              <label
-                htmlFor="Хвоя"
-                style={{
-                  opacity: selected === "Хвоя" ? 1 : 0.3,
-                  color: "#C9C9C9",
-                }}
-              >
-                Хвоя
-              </label>
-            </div>
-            <div className={classes.woodSpecialWrapper}>
-              <input
-                className={classes.customRadio}
-                name="color"
-                type="radio"
-                id="Берёза"
-                value="Берёза"
-                checked={selected === "Берёза"}
-                onChange={handleChange}
-              />
-              <label
-                htmlFor="Берёза"
-                style={{
-                  opacity: selected === "Берёза" ? 1 : 0.3,
-                  color: "#C9C9C9",
-                }}
-              >
-                Берёза
-              </label>
-            </div>
-            <div className={classes.woodSpecialWrapper}>
-              <input
-                className={classes.customRadio}
-                name="color"
-                type="radio"
-                id="Лиственница"
-                value="Лиственница"
-                checked={selected === "Лиственница"}
-                onChange={handleChange}
-              />
-              <label
-                htmlFor="Лиственница"
-                style={{
-                  opacity: selected === "Лиственница" ? 1 : 0.3,
-                  color: "#C9C9C9",
-                }}
-              >
-                Лиственница
-              </label>
-            </div>
-            <div className={classes.woodSpecialWrapper}>
-              <input
-                className={classes.customRadio}
-                name="color"
-                type="radio"
-                id="Дуб"
-                value="Дуб"
-                checked={selected === "Дуб"}
-                onChange={handleChange}
-              />
-              <label
-                htmlFor="Дуб"
-                style={{
-                  opacity: selected === "Дуб" ? 1 : 0.3,
-                  color: "#C9C9C9",
-                }}
-              >
-                Дуб
-              </label>
-            </div>
-            <div className={classes.woodSpecialWrapper}>
-              <input
-                className={classes.customRadio}
-                name="color"
-                type="radio"
-                id="Кедр"
-                value="Кедр"
-                checked={selected === "Кедр"}
-                onChange={handleChange}
-              />
-              <label
-                htmlFor="Кедр"
-                style={{
-                  opacity: selected === "Кедр" ? 1 : 0.3,
-                  color: "#C9C9C9",
-                }}
-              >
-                Кедр
-              </label>
-            </div>
-          </div>
-          <div className={classes.commonFiltersWrapper}>
-            <div className={classes.commonFilters}>
-              {currentSubcategories.map((name) => (
-                <div
-                  className={
-                    type.includes(handleFilterWord(name))
-                      ? classes.commonFilterButtonHovered
-                      : classes.commonFilterButton
-                  }
-                >
-                  {name}
-                  <input
-                    type="checkbox"
-                    className={classes.filterCheckbox}
-                    id={handleFilterWord(name)}
-                    name={handleFilterWord(name)}
-                    onChange={handleCheckboxChange}
-                    checked={type.includes(handleFilterWord(name))}
+	const handleFilterWord = (filter: string) => {
+		return filter
+			.toLowerCase()
+			.split(' ')
+			.map(word => word.charAt(0).toUpperCase() + word.slice(1))
+			.join('_')
+	}
+
+	const displayName = (name: string) => {
+		return name
+			.toLowerCase()
+			.split(' ')
+			.map(word => word.charAt(0).toUpperCase() + word.slice(1))
+			.join(' ')
+	}
+
+	return (
+		<div className={classes.products}>
+			<MyModal visible={shopModal} setVisible={setShopModal}>
+				<BasketPage
+					basketItems={basketItems}
+					setBasketItems={setBasketItems}
+					addProduct={addProduct}
+					removeItemById={removeItemById}
+				/>
+			</MyModal>
+			<div
+				className={classes.leftFilterBlock}
+				style={{ display: isMobile ? 'none' : 'block' }}
+			>
+				<div className={classes.allWoodSpecies}>
+					<div>
+						<input
+							className={classes.customRadio}
+							name='color'
+							type='radio'
+							id='Все_породы_дерева'
+							value='Все_породы_дерева'
+							checked={selected === 'Все_породы_дерева'}
+							onChange={handleChange}
+						/>
+						<label
+							htmlFor='Все_породы_дерева'
+							style={{
+								opacity: selected === 'Все_породы_дерева' ? 1 : 0.6,
+								color: '#C9C9C9',
+							}}
+						>
+							Все породы дерева
+						</label>
+					</div>
+					<div>
+						<input
+							className={classes.customRadio}
+							name='color'
+							type='radio'
+							id='Хвоя'
+							value='Хвоя'
+							checked={selected === 'Хвоя'}
+							onChange={handleChange}
+						/>
+						<label
+							htmlFor='Хвоя'
+							style={{
+								opacity: selected === 'Хвоя' ? 1 : 0.6,
+								color: '#C9C9C9',
+							}}
+						>
+							Хвоя
+						</label>
+					</div>
+					<div>
+						<input
+							className={classes.customRadio}
+							name='color'
+							type='radio'
+							id='Ангарская_сосна'
+							value='Ангарская_сосна'
+							checked={selected === 'Ангарская_сосна'}
+							onChange={handleChange}
+						/>
+						<label
+							htmlFor='Ангарская_сосна'
+							style={{
+								opacity: selected === 'Ангарская_сосна' ? 1 : 0.6,
+								color: '#C9C9C9',
+							}}
+						>
+							Ангарская сосна
+						</label>
+					</div>
+					<div>
+						<input
+							className={classes.customRadio}
+							name='color'
+							type='radio'
+							id='Берёза'
+							value='Берёза'
+							checked={selected === 'Берёза'}
+							onChange={handleChange}
+						/>
+						<label
+							htmlFor='Берёза'
+							style={{
+								opacity: selected === 'Берёза' ? 1 : 0.6,
+								color: '#C9C9C9',
+							}}
+						>
+							Берёза
+						</label>
+					</div>
+					<div>
+						<input
+							className={classes.customRadio}
+							name='color'
+							type='radio'
+							id='Лиственница'
+							value='Лиственница'
+							checked={selected === 'Лиственница'}
+							onChange={handleChange}
+						/>
+						<label
+							htmlFor='Лиственница'
+							style={{
+								opacity: selected === 'Лиственница' ? 1 : 0.6,
+								color: '#C9C9C9',
+							}}
+						>
+							Лиственница
+						</label>
+					</div>
+					<div>
+						<input
+							className={classes.customRadio}
+							name='color'
+							type='radio'
+							id='Дуб'
+							value='Дуб'
+							checked={selected === 'Дуб'}
+							onChange={handleChange}
+						/>
+						<label
+							htmlFor='Дуб'
+							style={{
+								opacity: selected === 'Дуб' ? 1 : 0.6,
+								color: '#C9C9C9',
+							}}
+						>
+							Дуб
+						</label>
+					</div>
+					<div>
+						<input
+							className={classes.customRadio}
+							name='color'
+							type='radio'
+							id='Кедр'
+							value='Кедр'
+							checked={selected === 'Кедр'}
+							onChange={handleChange}
+						/>
+						<label
+							htmlFor='Кедр'
+							style={{
+								opacity: selected === 'Кедр' ? 1 : 0.6,
+								color: '#C9C9C9',
+							}}
+						>
+							Кедр
+						</label>
+					</div>
+				</div>
+				<div className={classes.rangeSlider}>
+					<RangeSlider handlePrice_range={handlePrice_range} />
+				</div>
+				<div className={classes.checkTitle}>Тип товара:</div>
+				<div className={classes.productsType}>
+					<div>
+						<input
+							type='checkbox'
+							className={classes.customCheckbox}
+							id='все'
+							name='все'
+							onChange={handleCheckboxChange}
+						/>
+						<label htmlFor='все'>Все</label>
+					</div>
+					<div>
+						<input
+							type='checkbox'
+							className={classes.customCheckbox}
+							id='вешало'
+							name='вешало'
+							onChange={handleCheckboxChange}
+							checked={type.includes('вешало')}
+						/>
+						<label htmlFor='вешало'>Вешало</label>
+					</div>
+					<div>
+						<input
+							type='checkbox'
+							className={classes.customCheckbox}
+							id='журнальные столики'
+							name='журнальные столики'
+							onChange={handleCheckboxChange}
+							checked={type.includes('журнальные столики')}
+						/>
+						<label htmlFor='журнальные столики'>Журнальные столики</label>
+					</div>
+					<div>
+						<input
+							type='checkbox'
+							className={classes.customCheckbox}
+							id='консоли'
+							name='консоли'
+							onChange={handleCheckboxChange}
+							checked={type.includes('консоли')}
+						/>
+						<label htmlFor='консоли'>Консоли</label>
+					</div>
+					<div>
+						<input
+							type='checkbox'
+							className={classes.customCheckbox}
+							id='кухня'
+							name='кухня'
+							onChange={handleCheckboxChange}
+							checked={type.includes('кухня')}
+						/>
+						<label htmlFor='кухня'>Кухня</label>
+					</div>
+					<div>
+						<input
+							type='checkbox'
+							className={classes.customCheckbox}
+							id='рейлы'
+							name='рейлы'
+							onChange={handleCheckboxChange}
+							checked={type.includes('рейлы')}
+						/>
+						<label htmlFor='рейлы'>Рейлы</label>
+					</div>
+					<div>
+						<input
+							type='checkbox'
+							className={classes.customCheckbox}
+							id='ресепшн'
+							name='ресепшн'
+							onChange={handleCheckboxChange}
+							checked={type.includes('ресепшн')}
+						/>
+						<label htmlFor='ресепшн'>Ресепшн</label>
+					</div>
+					<div>
+						<input
+							type='checkbox'
+							className={classes.customCheckbox}
+							id='стол переговорный'
+							name='стол переговорный'
+							onChange={handleCheckboxChange}
+							checked={type.includes('стол переговорный')}
+						/>
+						<label htmlFor='стол переговорный'>Стол переговорный</label>
+					</div>
+					<div>
+						<input
+							type='checkbox'
+							className={classes.customCheckbox}
+							id='стол руководителя'
+							name='стол руководителя'
+							onChange={handleCheckboxChange}
+							checked={type.includes('стол руководителя')}
+						/>
+						<label htmlFor='стол руководителя'>Стол руководителя</label>
+					</div>
+					<div>
+						<input
+							type='checkbox'
+							className={classes.customCheckbox}
+							id='столы'
+							name='столы'
+							onChange={handleCheckboxChange}
+							checked={type.includes('столы')}
+						/>
+						<label htmlFor='столы'>Столы</label>
+					</div>
+					<div>
+						<input
+							type='checkbox'
+							className={classes.customCheckbox}
+							id='стулья'
+							name='стулья'
+							onChange={handleCheckboxChange}
+							checked={type.includes('стулья')}
+						/>
+						<label htmlFor='стулья'>Стулья</label>
+					</div>
+					<div>
+						<input
+							type='checkbox'
+							className={classes.customCheckbox}
+							id='торговый островок'
+							name='торговый островок'
+							onChange={handleCheckboxChange}
+							checked={type.includes('торговый островок')}
+						/>
+						<label htmlFor='торговый островок'>Торговый островок</label>
+					</div>
+					<div>
+						<input
+							type='checkbox'
+							className={classes.customCheckbox}
+							id='тумбы'
+							name='тумбы'
+							onChange={handleCheckboxChange}
+							checked={type.includes('тумбы')}
+						/>
+						<label htmlFor='тумбы'>Тумбы</label>
+					</div>
+					<div>
+						<input
+							type='checkbox'
+							className={classes.customCheckbox}
+							id='шкафы'
+							name='шкафы'
+							onChange={handleCheckboxChange}
+							checked={type.includes('шкафы')}
+						/>
+						<label htmlFor='шкафы'>Шкафы</label>
+					</div>
+					<div>
+						<input
+							type='checkbox'
+							className={classes.customCheckbox}
+							id='прочее'
+							name='прочее'
+							onChange={handleCheckboxChange}
+							checked={type.includes('прочее')}
+						/>
+						<label htmlFor='прочее'>Прочее</label>
+					</div>
+				</div>
+			</div>
+			<div className={classes.rightProductsBlock}>
+				<div className={classes.searchAndSort}>
+					<div className={classes.filtAlt} style={{ cursor: 'pointer' }}>
+						<div>
+							<img src={filtImg} />
+						</div>
+						<div style={{ fontFamily: 'NAMU-1960-otf', position: 'relative' }}>
+							Фильтры
+							<div className={classes.sortSelection}>
+								<select className={classes.sortfield} onChange={handleSort}>
+									<option>Порядок: по умолча</option>
+									<option>Порядок: цена вверх</option>
+									<option>Порядок: цена вниз</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div className={classes.divSearchfield}>
+						<input
+							placeholder={isMiniMobile ? '' : 'Поиск'}
+							className={classes.searchfield}
+							onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+								setSearch_query(event.target.value)
+							}
+						/>
+					</div>
+					<div className={classes.divSortfield}>
+						<select className={classes.sortfield} onChange={handleSort}>
+							<option>Порядок: по умолча</option>
+							<option>Порядок: цена вверх</option>
+							<option>Порядок: цена вниз</option>
+						</select>
+					</div>
+				</div>
+				<div className={classes.filtersWrapper}>
+					<div className={classes.filtersWithImgWrapper}>
+						<div className={classes.filtersWithImg}>
+							<div
+								className={
+									selectedCategory === 'Торговое оборудование'
+										? classes.filterWithImgWrapperActive
+										: classes.filterWithImgWrapper
+								}
+								onClick={() => {
+									setSelectedCategory('Торговое оборудование')
+									setType([])
+								}}
+							>
+								<div className={classes.labelWrapper}>
+									<div className={classes.filterLabel}>
+										Торговое оборудование
+									</div>
+								</div>
+								<div className={classes.imgWrapper}>
+									<img src={first_image} className={classes.firstImg} />
+								</div>
+							</div>
+							<div
+								className={
+									selectedCategory === 'Офисная мебель'
+										? classes.filterWithImgWrapperActive
+										: classes.filterWithImgWrapper
+								}
+								onClick={() => {
+									setSelectedCategory('Офисная мебель')
+									setType([])
+								}}
+							>
+								<div className={classes.labelWrapper}>
+									<div className={classes.filterLabel}>Офисная мебель</div>
+								</div>
+								<div className={classes.imgWrapper}>
+									<img src={second_image} className={classes.secondImg} />
+								</div>
+							</div>
+							<div
+								className={
+									selectedCategory === 'Кафе, бары, рестораны'
+										? classes.filterWithImgWrapperActive
+										: classes.filterWithImgWrapper
+								}
+								onClick={() => {
+									setSelectedCategory('Кафе, бары, рестораны')
+									setType([])
+								}}
+							>
+								<div className={classes.labelWrapper}>
+									<div className={classes.filterLabel}>
+										Кафе<br></br>Бары<br></br>Рестораны
+									</div>
+								</div>
+								<div className={classes.imgWrapper}>
+									<img src={third_image} className={classes.thirdImg} />
+								</div>
+							</div>
+							<div
+								className={
+									selectedCategory === 'Мебель для дома'
+										? classes.filterWithImgWrapperActive
+										: classes.filterWithImgWrapper
+								}
+								onClick={() => {
+									setSelectedCategory('Мебель для дома')
+									setType([])
+								}}
+							>
+								<div className={classes.labelWrapper}>
+									<div className={classes.filterLabel}>Для дома</div>
+								</div>
+								<div className={classes.imgWrapper}>
+									<img src={fourth_image} className={classes.fourthImg} />
+								</div>
+							</div>
+							<div
+								className={
+									selectedCategory === 'Кухни, шкафы купе'
+										? classes.filterWithImgWrapperActive
+										: classes.filterWithImgWrapper
+								}
+								onClick={() => {
+									setSelectedCategory('Кухни, шкафы купе')
+									setType([])
+								}}
+							>
+								<div className={classes.labelWrapper}>
+									<div className={classes.filterLabel}>
+										Кухни<br></br>Шкафы купе
+									</div>
+								</div>
+								<div className={classes.imgWrapper}>
+									<img src={fifth_image} className={classes.fifthImg} />
+								</div>
+							</div>
+							<div
+								className={
+									selectedCategory === 'Для гостиниц'
+										? classes.filterWithImgWrapperActive
+										: classes.filterWithImgWrapper
+								}
+								onClick={() => {
+									setSelectedCategory('Для гостиниц')
+									setType([])
+								}}
+							>
+								<div className={classes.labelWrapper}>
+									<div className={classes.lastFilterLabel}>
+										Для<br></br>гостиниц
+									</div>
+								</div>
+								<div className={classes.imgWrapper}>
+									<img src={sixth_image} className={classes.sixthImg} />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div
+						className={classes.allWoods}
+						style={{ display: isMobile ? 'flex' : 'none' }}
+					>
+						<div className={classes.woodSpecialWrapper}>
+							<input
+								className={classes.customRadio}
+								name='color'
+								type='radio'
+								id='Все_породы_дерева'
+								value='Все_породы_дерева'
+								checked={selected === 'Все_породы_дерева'}
+								onChange={handleChange}
+							/>
+							<label
+								htmlFor='Все_породы_дерева'
+								style={{
+									opacity: selected === 'Все_породы_дерева' ? 1 : 0.3,
+									color: '#C9C9C9',
+								}}
+							>
+								Все породы дерева
+							</label>
+						</div>
+						<div className={classes.woodSpecialWrapper}>
+							<input
+								className={classes.customRadio}
+								name='color'
+								type='radio'
+								id='Ангарская_сосна'
+								value='Ангарская_сосна'
+								checked={selected === 'Ангарская_сосна'}
+								onChange={handleChange}
+							/>
+							<label
+								htmlFor='Ангарская_сосна'
+								style={{
+									opacity: selected === 'Ангарская_сосна' ? 1 : 0.3,
+									color: '#C9C9C9',
+								}}
+							>
+								Ангарская сосна
+							</label>
+						</div>
+						<div className={classes.woodSpecialWrapper}>
+							<input
+								className={classes.customRadio}
+								name='color'
+								type='radio'
+								id='Хвоя'
+								value='Хвоя'
+								checked={selected === 'Хвоя'}
+								onChange={handleChange}
+							/>
+							<label
+								htmlFor='Хвоя'
+								style={{
+									opacity: selected === 'Хвоя' ? 1 : 0.3,
+									color: '#C9C9C9',
+								}}
+							>
+								Хвоя
+							</label>
+						</div>
+						<div className={classes.woodSpecialWrapper}>
+							<input
+								className={classes.customRadio}
+								name='color'
+								type='radio'
+								id='Берёза'
+								value='Берёза'
+								checked={selected === 'Берёза'}
+								onChange={handleChange}
+							/>
+							<label
+								htmlFor='Берёза'
+								style={{
+									opacity: selected === 'Берёза' ? 1 : 0.3,
+									color: '#C9C9C9',
+								}}
+							>
+								Берёза
+							</label>
+						</div>
+						<div className={classes.woodSpecialWrapper}>
+							<input
+								className={classes.customRadio}
+								name='color'
+								type='radio'
+								id='Лиственница'
+								value='Лиственница'
+								checked={selected === 'Лиственница'}
+								onChange={handleChange}
+							/>
+							<label
+								htmlFor='Лиственница'
+								style={{
+									opacity: selected === 'Лиственница' ? 1 : 0.3,
+									color: '#C9C9C9',
+								}}
+							>
+								Лиственница
+							</label>
+						</div>
+						<div className={classes.woodSpecialWrapper}>
+							<input
+								className={classes.customRadio}
+								name='color'
+								type='radio'
+								id='Дуб'
+								value='Дуб'
+								checked={selected === 'Дуб'}
+								onChange={handleChange}
+							/>
+							<label
+								htmlFor='Дуб'
+								style={{
+									opacity: selected === 'Дуб' ? 1 : 0.3,
+									color: '#C9C9C9',
+								}}
+							>
+								Дуб
+							</label>
+						</div>
+						<div className={classes.woodSpecialWrapper}>
+							<input
+								className={classes.customRadio}
+								name='color'
+								type='radio'
+								id='Кедр'
+								value='Кедр'
+								checked={selected === 'Кедр'}
+								onChange={handleChange}
+							/>
+							<label
+								htmlFor='Кедр'
+								style={{
+									opacity: selected === 'Кедр' ? 1 : 0.3,
+									color: '#C9C9C9',
+								}}
+							>
+								Кедр
+							</label>
+						</div>
+					</div>
+					<div className={classes.commonFiltersWrapper}>
+						<div className={classes.commonFilters}>
+							{currentSubcategories.map(name => (
+								<div
+									className={
+										type.includes(handleFilterWord(name))
+											? classes.commonFilterButtonHovered
+											: classes.commonFilterButton
+									}
+								>
+									{displayName(name)}
+									<input
+										type='checkbox'
+										className={classes.filterCheckbox}
+										id={handleFilterWord(name)}
+										name={handleFilterWord(name)}
+										onChange={handleCheckboxChange}
+										checked={type.includes(handleFilterWord(name))}
+									/>
+								</div>
+							))}
+						</div>
+					</div>
+				</div>
+				<div className={classes.productsList}>
+					{props.isShowPreloader ? (
+						<div
+							style={{
+								display: 'flex',
+								justifyContent: 'center',
+								alignItems: 'center',
+								height: '200px',
+								fontSize: '18px',
+							}}
+						>
+							Загрузка товаров...
+						</div>
+					) : products.length === 0 ? (
+						<div
+							style={{
+								display: 'flex',
+								justifyContent: 'center',
+								alignItems: 'center',
+								height: '200px',
+								fontSize: '18px',
+								color: '#666',
+							}}
+						>
+							Товары не найдены
+						</div>
+					) : (
+						products.map((product: any) => {
+							return (
+								<Product
+									key={product.id}
+									id={product.id}
+									name={product.name}
+									material={product.category || ''}
+									description={product.description}
+									price={product.price}
+									setShopModal={setShopModal}
+									product={product}
+									addProduct={addProduct}
+								/>
+							)
+						})
+					)}
+				</div>
+				<div className={classes.allWoodSpecies}>
+					<button
+						className={classes.loadMore}
+						onClick={() => {
+							setCounter(counter + 1)
+						}}
+					>
+						Загрузить еще
+					</button>
+				</div>
+			</div>
+
+			{/* <div className={classes.posts}>
+                  <PostsFilter
+                      onSetSearchQuery={props.onSetSearchQuery}
+                      searchQuery={props.searchQuery}
+                      selectedSort={props.selectedSort}
+                      sortPosts={sortPosts}
                   />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-        <div className={classes.productsList}>
-          {props.isShowPreloader ? (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "200px",
-                fontSize: "18px",
-              }}
-            >
-              Загрузка товаров...
-            </div>
-          ) : products.length === 0 ? (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "200px",
-                fontSize: "18px",
-                color: "#666",
-              }}
-            >
-              Товары не найдены
-            </div>
-          ) : (
-            products.map((product: any) => {
-              return (
-                <Product
-                  key={product.id}
-                  id={product.id}
-                  name={product.name}
-                  material={product.category || ""}
-                  description={product.description}
-                  price={product.price}
-                  setShopModal={setShopModal}
-                  product={product}
-                  addProduct={addProduct}
-                />
-              );
-            })
-          )}
-        </div>
-        <div className={classes.allWoodSpecies}>
-          <button
-            className={classes.loadMore}
-            onClick={() => {
-              setCounter(counter + 1);
-            }}
-          >
-            Загрузить еще
-          </button>
-        </div>
-      </div>
+                  {props.isShowPreloader
+                      && <Preloader/>}
+                  {
+                      sortedAndSearchPosts.map((post: PostType | UserType, index: number) => {
+                              const typedPost = post as PostType;
+                              return (
+                                  <Post
+                                      number={index + 1}
+                                      id={typedPost.id}
+                                      name={typedPost.title}
+                                      massage={typedPost.body}
+                                      key={typedPost.id}
+                                  />
+                              );
+                      })
+                  }
+                  <div ref={lastElement} style={{height: 20, background: "red"}}/>
+                  {sortedAndSearchPosts.length === 0 && !props.isShowPreloader
+                      && <h1 className={classes.headlines}>Posts not found!</h1>}
+              </div> */}
+		</div>
+	)
+}
 
-      {/* <div className={classes.posts}>
-                <PostsFilter
-                    onSetSearchQuery={props.onSetSearchQuery}
-                    searchQuery={props.searchQuery}
-                    selectedSort={props.selectedSort}
-                    sortPosts={sortPosts}
-                />
-                {props.isShowPreloader
-                    && <Preloader/>}
-                {
-                    sortedAndSearchPosts.map((post: PostType | UserType, index: number) => {
-                            const typedPost = post as PostType;
-                            return (
-                                <Post
-                                    number={index + 1}
-                                    id={typedPost.id}
-                                    name={typedPost.title}
-                                    massage={typedPost.body}
-                                    key={typedPost.id}
-                                />
-                            );
-                    })
-                }
-                <div ref={lastElement} style={{height: 20, background: "red"}}/>
-                {sortedAndSearchPosts.length === 0 && !props.isShowPreloader
-                    && <h1 className={classes.headlines}>Posts not found!</h1>}
-            </div> */}
-    </div>
-  );
-};
-
-export default AllProducts;
+export default AllProducts
