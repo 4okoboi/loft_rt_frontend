@@ -133,10 +133,10 @@ const ProductDetailPage: React.FC<ProductDetailPageType> = props => {
 		}
 
 		if (imageUrl.startsWith('/')) {
-			return `https://79.174.86.248:8080${imageUrl}`
+			return `https://loft-rt.ru/api${imageUrl}`
 		}
 
-		return `https://79.174.86.248:8080/${imageUrl}`
+		return `https://loft-rt.ru/api/${imageUrl}`
 	}
 
 	const nextImage = () => {

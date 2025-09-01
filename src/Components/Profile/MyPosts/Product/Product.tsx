@@ -39,9 +39,9 @@ const Product: React.FC<ProductElementType> = props => {
 			return url
 		}
 		if (url.startsWith('/')) {
-			return `https://79.174.86.248:8080${url}`
+			return `https://loft-rt.ru/api${url}`
 		}
-		return `https://79.174.86.248:8080/${url}`
+		return `https://loft-rt.ru/api/${url}`
 	}
 
 	return (
