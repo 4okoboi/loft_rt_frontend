@@ -5,6 +5,7 @@ export default defineConfig(({ command, mode }) => ({
 	plugins: [
 		react({
 			include: '**/*.{jsx,tsx,js,ts}',
+			exclude: ['**/.git/**', '**/node_modules/**'], // Исключаем .git и node_modules
 		}),
 	],
 	esbuild: {
@@ -45,6 +46,12 @@ export default defineConfig(({ command, mode }) => ({
 		cors: true,
 		host: true, // Разрешаем подключения извне
 		allowedHosts: ['loft-rt.ru', 'www.loft-rt.ru', 'localhost', '127.0.0.1'],
+		hmr: {
+			overlay: false, // Отключаем overlay ошибок
+		},
+		watch: {
+			ignored: ['**/.git/**', '**/node_modules/**'], // Исключаем .git и node_modules из наблюдения
+		},
 	},
 	assetsInclude: ['**/*.webp'],
 	preview: {
