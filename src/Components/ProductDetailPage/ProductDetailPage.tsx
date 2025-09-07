@@ -352,7 +352,7 @@ const ProductDetailPage: React.FC<ProductDetailPageType> = props => {
 											product?.photo_links && product.photo_links.length > 0
 												? product.photo_links[0].startsWith('http')
 													? product.photo_links[0]
-													: `http://79.174.86.248:8080${product.photo_links[0]}`
+													: `https://loft-rt.ru/api${product.photo_links[0]}`
 												: ''
 										}
 										alt={product.name}
