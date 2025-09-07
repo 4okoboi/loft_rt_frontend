@@ -2,7 +2,7 @@ import axios from 'axios'
 import { ProductType } from '../utils/generalTypes'
 
 const instance = axios.create({
-	baseURL: 'https://loft-rt.ru/api',
+	baseURL: 'http://79.174.86.248:8080',
 })
 
 export const CatalogAPI = {

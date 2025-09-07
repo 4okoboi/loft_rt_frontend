@@ -1,6 +1,6 @@
 .product{
   display: block;
-  width: 370.443333px;
+  width: calc(33.33% - 14px);
   font-family: NAMU-1850;
   margin-bottom: 20.1px;
 }
@@ -111,6 +111,12 @@
 
 .basketButton div{
   margin-top: 13.3px;
+}
+
+@media screen and (max-width: 1200px) {
+  .product{
+    width: calc(50% - 14px);
+  }
 }
 
 @media screen and (max-width: 450px) {
